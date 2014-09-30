@@ -1,0 +1,6 @@
+<?php /* 
+
+[ShopSettings]
+RedirectAfterAddToBasket=reload
+
+*/ ?>

@@ -1,0 +1,91 @@
+Changes to BC and behavior in version 5.2
+=========================================
+
+INI setting changes
+-------------------
+
+- content.ini[DataTypeSettings]AvailableDatatypes 
+
+  Since 5.2 AvailableDataTypes can be defined with a pair of dataype/class and so take
+  adventage of autoload mechanism reducing the number of file_exists and include calls.
+  You should update those of your extensions defining datatypes accordingly.
+  Ex: AvailableDatatypes[mycustom]=myCustomType
+
+  Even this is now the recommended way to do it, the 'old' way is still valid.
+  The main adventage is that you will gain some file_exists and include calls.
+  You won't need to execute the eZDataType::register method from your dataype
+  class either.
+
+- workflow.ini[EventSettings]AvailableEventTypes 
+
+  Since 5.2 AvailableEventTypes can be defined with a pair of eventype/class and so take
+  adventage of autoload mechanism reducing the number of file_exists and include calls.
+  You should update those of your extensions defining workflows accordingly.
+  Ex: AvailableEventTypes[event_custom]=customType
+
+  Even this is now the recommended way to do it, the 'old' way is still valid.
+  The main adventage is that you will gain some file_exists and include calls.
+  You won't need to execute the eZWorkflowEventType::registerEventType method
+  from your workflow class either.
+
+
+Change of behavior
+------------------
+
+- Fixed EZP-18195: $result.object is not correctly created
+
+  eZContentObject->assignedNodes( false ):
+  * Does not return columns "id" and "contentobject_id" anymore.
+  * Returns "ezcontentobject.remote_id" under the "object_remote_id" key,
+  "remote_id" key still contains "ezcontentobject_tree.remote_id".
+
+  eZContentObjectTreeNode::subTreeByNodeID() and
+  eZContentObjectTreeNode::subTreeMultiPaths() does not internally use columns
+  "ezcontentobject_tree.contentobject_id" and "ezcontentobject.name" anymore.
+  If you relied on those with extended attribute filtering using an "HAVING"
+  clause, replaces "ezcontentobject_tree.contentobject_id" by
+  "ezcontentobject.id" and add "ezcontentobject.name" to the additional
+  columns to be retrieved if you used it.
+
+  eZContentObjectTreeNode::findMainNodeArray( [...], false ),
+  eZContentObjectTreeNode::fetch( [...], [...], false ) and:
+  eZContentObjectTreeNode::fetchNodesByPathString( [...], [...], false ):
+  eZContentObjectTreeNode::fetchByRemoteID( [...], false );
+  eZContentObjectTreeNode::fetchByPath( [...], false );
+  eZContentObjectTreeNode::fetchByURLPath( [...], false );
+  * Does not return key "contentobject_id" in addition to "id" anymore, use
+  the "id" key instead.
+  * Returns "ezcontentobject.remote_id" under the "object_remote_id" key,
+  "remote_id" key still contains "ezcontentobject_tree.remote_id".
+
+- Fixed EZP-20766: Wrong default value for CLUSTER_HEADER_X_POWERED_BY in index_cluster.php
+
+  The previous default value (true) led to X-Powered-By being set to 1 (true cast to integer).
+  From 5.2, the default value will be set to "eZ Publish".
+
+- menu.ini\[Leftmenu_<menu>]
+
+  Links in left menu are now by default disabled in browse mode.
+  This can now be changed per item using the new Enabled_<link>[<ui_context>] setting.
+
+- #019411: Avoid file_exists and include calls for registering datatypes and workflows
+
+  Kernel datatypes and kernel workflow classes take now adventage of the autoload 
+  mechanism. Autoload generator add these clasess to the autoload array, so there's no 
+  need to do any of the file_exists or include calls.
+
+
+Removed features
+----------------
+
+
+Removed constants
+-----------------
+
+
+Removed globals
+---------------
+
+
+Deprecated
+----------
