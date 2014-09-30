@@ -40,8 +40,8 @@ if ( $module->isCurrentAction( 'ActivateExtensions' ) )
         $selectedExtensionArray = array();
     }
 
-    // The file settings/override/site.ini.append.php is updated like this:
-    // - take the existing list of extensions from site.ini.append.php (to preserve their order)
+    // The file settings/override/site.ini.append.php.old is updated like this:
+    // - take the existing list of extensions from site.ini.append.php.old (to preserve their order)
     // - remove from the list the extensions that the user unchecked in the admin interface
     // - add to the list the extensions checked by the user in the admin interface, but to the end of the list
     $intersection = array_intersect( $selectedExtensions, $selectedExtensionArray );

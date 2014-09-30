@@ -436,7 +436,7 @@ function checkSiteaccess( $siteAccess, $bailOutOnError = false )
 //
 function postInstallAdminSiteaccessINIUpdate( $params )
 {
-    $siteINI = eZINI::instance( "site.ini.append.php", "settings/siteaccess/" . $params['admin_siteaccess'], null, false, null, true );
+    $siteINI = eZINI::instance( "site.ini.append.php.old", "settings/siteaccess/" . $params['admin_siteaccess'], null, false, null, true );
     $siteINI->setVariable( "DesignSettings", "SiteDesign", $params['admin_siteaccess'] );
     $siteINI->setVariable( "DesignSettings", "AdditionalSiteDesignList", array( "admin" ) );
     $siteINI->setVariable( "SiteAccessSettings", "RelatedSiteAccessList", $params['all_siteaccess_list'] );
@@ -446,7 +446,7 @@ function postInstallAdminSiteaccessINIUpdate( $params )
 
 function postInstallUserSiteaccessINIUpdate( $params )
 {
-    $siteINI = eZINI::instance( "site.ini.append.php", "settings/siteaccess/" . $params['user_siteaccess'], null, false, null, true );
+    $siteINI = eZINI::instance( "site.ini.append.php.old", "settings/siteaccess/" . $params['user_siteaccess'], null, false, null, true );
     $siteINI->setVariable( "DesignSettings", "SiteDesign", $params['main_site_design'] );
     $siteINI->setVariable( "SiteAccessSettings", "RelatedSiteAccessList", $params['all_siteaccess_list'] );
     $siteINI->setVariable( "FileSettings", "VarDir", "var/ezwebin_site" );
@@ -549,7 +549,7 @@ function updateINIAccessType( $accessType, $params )
     $portMatch = array();
     $hostMatch = array();
 
-    $siteINI = eZINI::instance( "site.ini.append.php", "settings/override", null, false, null, true );
+    $siteINI = eZINI::instance( "site.ini.append.php.old", "settings/override", null, false, null, true );
 
     $siteaccessTypes = $params['siteaccess_urls'];
 

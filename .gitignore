@@ -22,3 +22,4 @@ support/ezlupdate-qt4.5/ezlupdate/obj
 composer.lock
 db/*
 *.sql
+settings/override/site.ini.append.php.old

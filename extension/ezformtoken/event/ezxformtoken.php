@@ -11,7 +11,7 @@
 /**
  * This class listens to interal kernel events in eZ Publish to validate forms using pr session tokens
  *
- * @See settings/site.ini.append.php for events used.
+ * @See settings/site.ini.append.php.old for events used.
  * @See doc/Readme.rst for info about extension and about how to modify your ajax code to work with it.
  *
  * @internal
