@@ -4,15 +4,12 @@
 SessionNamePerSiteAccess=disabled
 
 [SiteSettings]
-SiteName=Website Interface (without demo content)
-SiteURL=lexx-test.office.sigmakom.ru/rus
 LoginPage=embedded
 AdditionalLoginFormActionURL=http://lexx-test.office.sigmakom.ru/site_admin/user/login
 
 [SiteAccessSettings]
 RequireUserLogin=false
 RelatedSiteAccessList[]
-RelatedSiteAccessList[]=rus
 RelatedSiteAccessList[]=rus
 RelatedSiteAccessList[]=site_admin
 ShowHiddenNodes=false

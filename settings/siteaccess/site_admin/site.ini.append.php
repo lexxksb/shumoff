@@ -1,14 +1,11 @@
 <?php /* #?ini charset="utf-8"?
 
 [SiteSettings]
-SiteName=Website Interface (without demo content)
-SiteURL=lexx-test.office.sigmakom.ru
 DefaultPage=content/dashboard
 LoginPage=custom
 
 [SiteAccessSettings]
 RequireUserLogin=true
-RelatedSiteAccessList[]=rus
 RelatedSiteAccessList[]=rus
 RelatedSiteAccessList[]=site_admin
 ShowHiddenNodes=true

@@ -10,16 +10,6 @@ ActiveExtensions[]=ezstarrating
 ActiveExtensions[]=ezgmaplocation
 ActiveExtensions[]=ezwebin
 ActiveExtensions[]=store
-
-[DatabaseSettings]
-DatabaseImplementation=ezmysqli
-Server=127.0.0.1
-Port=
-User=root
-Password=svpodchdd
-Database=shumoff
-Charset=
-Socket=disabled 
  
 [Session]
 SessionNameHandler=custom
@@ -92,9 +82,6 @@ ShowXHTMLCode=enabled
 ShowUsedTemplates=enabled
 TemplateCache=disabled
 TemplateCompile=disabled
-
-[DatabaseSettings]
-SQLOutput=disabled
 
 [ContentSettings]
 ViewCaching=disabled
