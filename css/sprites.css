@@ -1,0 +1,161 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+```html
+<!-- `display: block` sprite -->
+<div class="icon-home"></div>
+
+<!-- `display: inline-block` sprite -->
+<img class="icon-home" />
+```
+*/
+.icon-basket {
+  background-image: url(../img/spritesheet.png);
+  background-position: -146px -30px;
+  width: 25px;
+  height: 22px;
+}
+.icon-cEmail {
+  background-image: url(../img/spritesheet.png);
+  background-position: -245px -52px;
+  width: 15px;
+  height: 10px;
+}
+.icon-cHelp {
+  background-image: url(../img/spritesheet.png);
+  background-position: -171px -30px;
+  width: 20px;
+  height: 20px;
+}
+.icon-cHelpHover {
+  background-image: url(../img/spritesheet.png);
+  background-position: -191px -30px;
+  width: 20px;
+  height: 20px;
+}
+.icon-cIcq {
+  background-image: url(../img/spritesheet.png);
+  background-position: -174px -52px;
+  width: 14px;
+  height: 14px;
+}
+.icon-cPlace {
+  background-image: url(../img/spritesheet.png);
+  background-position: -16px -87px;
+  width: 12px;
+  height: 16px;
+}
+.icon-cSkype {
+  background-image: url(../img/spritesheet.png);
+  background-position: -146px -52px;
+  width: 14px;
+  height: 14px;
+}
+.icon-cTel {
+  background-image: url(../img/spritesheet.png);
+  background-position: -188px -52px;
+  width: 14px;
+  height: 14px;
+}
+.icon-cTime {
+  background-image: url(../img/spritesheet.png);
+  background-position: -210px -66px;
+  width: 15px;
+  height: 15px;
+}
+.icon-delivery {
+  background-image: url(../img/spritesheet.png);
+  background-position: -265px -30px;
+  width: 16px;
+  height: 11px;
+}
+.icon-email {
+  background-image: url(../img/spritesheet.png);
+  background-position: -230px -52px;
+  width: 15px;
+  height: 10px;
+}
+.icon-freeDelivery {
+  background-image: url(../img/spritesheet.png);
+  background-position: -232px -30px;
+  width: 17px;
+  height: 14px;
+}
+.icon-help {
+  background-image: url(../img/spritesheet.png);
+  background-position: -175px -66px;
+  width: 18px;
+  height: 18px;
+}
+.icon-himself {
+  background-image: url(../img/spritesheet.png);
+  background-position: -211px -30px;
+  width: 21px;
+  height: 16px;
+}
+.icon-icq {
+  background-image: url(../img/spritesheet.png);
+  background-position: -160px -52px;
+  width: 14px;
+  height: 14px;
+}
+.icon-liDot {
+  background-image: url(../img/spritesheet.png);
+  background-position: -281px -30px;
+  width: 6px;
+  height: 6px;
+}
+.icon-logo {
+  background-image: url(../img/spritesheet.png);
+  background-position: 0px 0px;
+  width: 146px;
+  height: 66px;
+}
+.icon-payTypes {
+  background-image: url(../img/spritesheet.png);
+  background-position: 0px -66px;
+  width: 175px;
+  height: 21px;
+}
+.icon-payment {
+  background-image: url(../img/spritesheet.png);
+  background-position: -249px -30px;
+  width: 16px;
+  height: 13px;
+}
+.icon-recomend {
+  background-image: url(../img/spritesheet.png);
+  background-position: -146px 0px;
+  width: 147px;
+  height: 30px;
+}
+.icon-remove {
+  background-image: url(../img/spritesheet.png);
+  background-position: -225px -66px;
+  width: 12px;
+  height: 15px;
+}
+.icon-review {
+  background-image: url(../img/spritesheet.png);
+  background-position: -193px -66px;
+  width: 17px;
+  height: 17px;
+}
+.icon-reviewBg {
+  background-image: url(../img/spritesheet.png);
+  background-position: 0px -87px;
+  width: 16px;
+  height: 33px;
+}
+.icon-skype {
+  background-image: url(../img/spritesheet.png);
+  background-position: -202px -52px;
+  width: 14px;
+  height: 14px;
+}
+.icon-tel {
+  background-image: url(../img/spritesheet.png);
+  background-position: -216px -52px;
+  width: 14px;
+  height: 14px;
+}
