@@ -179,9 +179,10 @@ header .navbar .navbar-header .basket .icon-basket {
 .facade .slogan {
   padding: 0 40px;
 }
-.facade .slogan .t1 {
+.facade .slogan h1 {
   font-size: 44px;
   padding-top: 15px;
+  margin-top: 0;
 }
 .facade .slogan .t2 {
   margin-top: 10px;
@@ -1174,6 +1175,9 @@ footer .subscribe button {
 .pagination li a:focus {
   background: #000000;
   color: #ffffff;
+}
+.spamfilter {
+  display: none;
 }
 
 @media (max-width: 1200px) {

@@ -1,114 +1,98 @@
 <!DOCTYPE html>
-<html lang="{$site.http_equiv.Content-language|wash}">
+<!--[if lt IE 8 ]> <html lang="ru" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>	<html lang="ru" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>	<html lang="ru" class="ie9"> <![endif]-->
+<!--[if IE 10 ]>   <html lang="ru" class="ie10"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!--> <html lang="ru"> <!--<![endif]-->
 <head>
-{def $basket_is_empty   = cond( $current_user.is_logged_in, fetch( shop, basket ).is_empty, 1 )
-     $user_hash         = concat( $current_user.role_id_list|implode( ',' ), ',', $current_user.limited_assignment_value_list|implode( ',' ) )}
+    {def    $pagedata         = ezpagedata()
+            $pagedesign       = $pagedata.template_look
+            $current_node_id  = $pagedata.node_id}
 
-{include uri='design:page_head_displaystyles.tpl'}
+    {include uri='design:page_head.tpl'}
 
-{if is_set( $extra_cache_key )|not}
-    {def $extra_cache_key = ''}
-{/if}
-
-{cache-block keys=array( $module_result.uri, $basket_is_empty, $current_user.contentobject_id, $extra_cache_key )}
-{def $pagedata         = ezpagedata()
-     $pagestyle        = $pagedata.css_classes
-     $locales          = fetch( 'content', 'translation_list' )
-     $pagedesign       = $pagedata.template_look
-     $current_node_id  = $pagedata.node_id}
-
-{include uri='design:page_head.tpl'}
-{include uri='design:page_head_style.tpl'}
-{include uri='design:page_head_script.tpl'}
-
+    <link rel="stylesheet" media="all" href="/css/production.min.css">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
-{* To simplify IE css targeting. IE9 conforms, so threat as rest *}
-<!--[if lt IE 7 ]><body class="ie6"><![endif]-->
-<!--[if IE 7 ]>   <body class="ie7"><![endif]-->
-<!--[if IE 8 ]>   <body class="ie8"><![endif]-->
-<!--[if (gt IE 8)|!(IE)]><!--><body><!--<![endif]-->
-<!-- Complete page area: START -->
 
-<!-- Change between "sidemenu"/"nosidemenu" and "extrainfo"/"noextrainfo" to switch display of side columns on or off  -->
-<div id="page" class="{$pagestyle}">
+<body>
+<!--[if lt IE 8]>
+<div class="browsehappy">Вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/">обновите Ваш браузер</a></div>
+<![endif]-->
+<div class="wrapper">
 
-  {if and( is_set( $pagedata.persistent_variable.extra_template_list ),
-             $pagedata.persistent_variable.extra_template_list|count() )}
-    {foreach $pagedata.persistent_variable.extra_template_list as $extra_template}
-      {include uri=concat('design:extra/', $extra_template)}
-    {/foreach}
-  {/if}
+    <header>
+        <div class="head">
+            <div class="logo"><a href="/"><div class="icon-logo"></div></a></div>
+            <div class="slogan">Технологии акустического комфорта</div>
+            <div class="pull-right">
+                <div class="tel">{$pagedesign.data_map.tel.content|wash}</div>
+                <a href="">{$pagedesign.data_map.addres.content|wash}</a>
+            </div>
+        </div>
+        {include uri='design:page_topmenu.tpl'}
+    </header>
 
-  <!-- Header area: START -->
-  {include uri='design:page_header.tpl'}
-  <!-- Header area: END -->
+    {include uri='design:facade.tpl'}
 
-  {cache-block keys=array( $module_result.uri, $user_hash, $extra_cache_key )}
+    <div class="content">
+        {if $module_result.node_id|eq(2)}
+            {include uri='design:page_mainarea.tpl'}
+        {else}
+            {def $subnodes = fetch( 'content', 'list', hash(
+                    'parent_node_id', $pagedata.path_array[1].node_id,
+                    'class_filter_type', 'include',
+                    'class_filter_array', array("folder")
+                ) )}
+            {if $subnodes|count}
+                <div class="row">
+                    <div class="col-md-9">
+                        {include uri='design:page_mainarea.tpl'}
+                    </div>
+                    <aside class="col-md-3">
+                        {include uri='design:page_innermenu.tpl' top_menu_items=$subnodes}
+                    </aside>
+                </div>
+            {else}
+                {include uri='design:page_mainarea.tpl'}
+            {/if}
+            {undef $subnodes}
+        {/if}
+    </div>
 
-  <!-- Top menu area: START -->
-  {if $pagedata.top_menu}
-    {include uri='design:page_topmenu.tpl'}
-  {/if}
-  <!-- Top menu area: END -->
-
-  <!-- Path area: START -->
-  {if $pagedata.show_path}
-    {include uri='design:page_toppath.tpl'}
-  {/if}
-  <!-- Path area: END -->
-
-  <!-- Toolbar area: START -->
-  {if and( $pagedata.website_toolbar, $pagedata.is_edit|not)}
-    {include uri='design:page_toolbar.tpl'}
-  {/if}
-  <!-- Toolbar area: END -->
-
-  <!-- Columns area: START -->
-  <div id="columns-position">
-  <div id="columns" class="float-break">
-
-    <!-- Side menu area: START -->
-    {if $pagedata.left_menu}
-        {include uri='design:page_leftmenu.tpl'}
-    {/if}
-    <!-- Side menu area: END -->
-
-  {/cache-block}
-{/cache-block}
-    <!-- Main area: START -->
-    {include uri='design:page_mainarea.tpl'}
-    <!-- Main area: END -->
-{cache-block keys=array( $module_result.uri, $user_hash, $access_type.name, $extra_cache_key )}
-
-    {if is_unset($pagedesign)}
-        {def $pagedata   = ezpagedata()
-             $pagedesign = $pagedata.template_look}
-    {/if}
-
-    <!-- Extra area: START -->
-    {if $pagedata.extra_menu}
-        {include uri='design:page_extramenu.tpl'}
-    {/if}
-    <!-- Extra area: END -->
-
-  </div>
-  </div>
-  <!-- Columns area: END -->
-
-  <!-- Footer area: START -->
-  {include uri='design:page_footer.tpl'}
-  <!-- Footer area: END -->
+    <footer>
+        <div class="about">
+            <div class="title">О нас</div>
+            {attribute_view_gui attribute=$pagedesign.data_map.footer_text}
+        </div>
+        <div class="help">
+            <div class="title">Помощь</div>
+            {def $nodes = fetch( 'content', 'list', hash( 'parent_node_id', 59 ) )}
+            {foreach $nodes as $node}
+                <div><a href={$node.url_alias|ezurl} title="{$node.name|wash}">{$node.name|wash}</a></div>
+            {/foreach}
+            {undef $nodes}
+        </div>
+        <div class="contacts">
+            <div class="title">Контакты</div>
+            <div class="icon icon-tel"></div><div class="i">{$pagedesign.data_map.tel.content|wash}</div>
+            <div class="icon icon-email"></div><div class="i">
+                <a href="mailto:{$pagedesign.data_map.email.content.data|wash}">{$pagedesign.data_map.email.content.data|wash('email')}</a></div>
+            <div class="icon icon-skype"></div><div class="i">{$pagedesign.data_map.skype.content|wash}</div>
+            <div class="icon icon-icq"></div><div class="i">{$pagedesign.data_map.icq.content|wash}</div>
+        </div>
+        <div class="subscribe">
+            <div class="title">Присоединяйтесь к нам</div>
+            <form action="" method="get">
+                <input type="email" name="" value="" placeholder="Ваш Email">
+                <div><button class="btn btn-shumoff" type="submit">Подписаться</button></div>
+            </form>
+        </div>
+    </footer>
 
 </div>
-<!-- Complete page area: END -->
-
-<!-- Footer script area: START -->
-{include uri='design:page_footer_script.tpl'}
-<!-- Footer script area: END -->
-
-{/cache-block}
-
-{* This comment will be replaced with actual debug report (if debug is on). *}
-<!--DEBUG_REPORT-->
+<script src="/js/production.min.js"></script>
 </body>
 </html>
