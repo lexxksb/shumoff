@@ -104,6 +104,11 @@ MatchFile=line/instruction.tpl
 Subdir=templates
 Match[class_identifier]=instruction
 
+[full_contacts]
+Source=node/view/full.tpl
+MatchFile=full/full_contacts.tpl
+Subdir=templates
+Match[class_identifier]=contacts
 
 [full_reviews]
 Source=node/view/full.tpl

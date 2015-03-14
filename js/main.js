@@ -19,7 +19,6 @@ $(document).ready(function(){
         });
     }
 
-
     $('[data-toggle="tooltip"]').tooltip();
 
     $('.review .fullLink').on("click", function(e){
@@ -28,5 +27,29 @@ $(document).ready(function(){
         _this.next(".full").show();
         _this.hide();
     });
+
+    var address = $("#map");
+    if(address.length) {
+        ymaps.ready(function () {
+            var myGeocoder = ymaps.geocode(address.data("address"));
+            myGeocoder.then(
+                function (res) {
+                    var coords = res.geoObjects.get(0).geometry.getCoordinates();
+                    var map = new ymaps.Map("map", {
+                        center: coords,
+                        zoom: 15
+                    });
+                    var office = new ymaps.GeoObject({
+                        geometry: {
+                            type: "Point",
+                            coordinates: coords
+                        }
+                    });
+                    map.geoObjects.add(office);
+                },
+                function (err) {}
+            );
+        });
+    }
 
 });
