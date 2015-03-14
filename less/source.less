@@ -963,6 +963,9 @@ header{
     }
 
     .review{
+        .media-left{
+            min-width: 80px;
+        }
         .media-body {
             font-size: 14px;
             .icon{
@@ -1258,12 +1261,14 @@ footer{
 .pagination{
     margin-top: 0;
     li{
+        &.active a, &.active a:hover, &.active a:focus{
+            background: #000000;
+            color: #ffffff;
+            border-color: #dddddd;
+        }
         a{
-            &:hover{
-                background: #000000;
-                color: #ffffff;
-            }
-            &:focus{
+            color: #000000;
+            &:hover, &:focus{
                 background: #000000;
                 color: #ffffff;
             }

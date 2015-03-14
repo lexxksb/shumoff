@@ -890,6 +890,9 @@ header .navbar .navbar-header .basket .icon-basket {
   font-size: 34px;
   margin: 40px 0 35px 0;
 }
+.content .review .media-left {
+  min-width: 80px;
+}
 .content .review .media-body {
   font-size: 14px;
 }
@@ -1168,10 +1171,17 @@ footer .subscribe button {
 .pagination {
   margin-top: 0;
 }
-.pagination li a:hover {
+.pagination li.active a,
+.pagination li.active a:hover,
+.pagination li.active a:focus {
   background: #000000;
   color: #ffffff;
+  border-color: #dddddd;
 }
+.pagination li a {
+  color: #000000;
+}
+.pagination li a:hover,
 .pagination li a:focus {
   background: #000000;
   color: #ffffff;
