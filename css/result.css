@@ -837,8 +837,8 @@ header .navbar .navbar-header .basket .icon-basket {
 .content .lineBlock {
   margin: 15px 0 45px 0;
 }
-.content .lineBlock .media-body {
-  padding-left: 20px;
+.content .lineBlock .media-left {
+  padding-right: 20px;
 }
 .content .lineBlock .media-body .media-heading {
   margin-bottom: 15px;

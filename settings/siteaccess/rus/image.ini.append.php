@@ -7,6 +7,11 @@ AliasList[]=medium
 AliasList[]=large
 AliasList[]=review
 AliasList[]=partner
+AliasList[]=lineBlock
+
+[lineBlock]
+Reference=
+Filters[]=geometry/thumbnailize=180;130
 
 [review]
 Reference=
