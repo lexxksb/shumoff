@@ -5,6 +5,10 @@
 
 <h1>{$node.data_map.name.content|wash()}</h1>
 
+{if $node.object.data_map.description.has_content}
+    {attribute_view_gui attribute=$node.data_map.description}
+{/if}
+
 {def $page_limit = 10
      $classes = array('review')
      $filter_type = 'include'
@@ -22,18 +26,15 @@
                                                 'class_filter_array', $classes,
                                                 'limit', $page_limit ) ) }
 
-    <div class="content-view-children">
-        {foreach $children as $child }
-            {node_view_gui view='line' content_node=$child}
-        {/foreach}
-    </div>
-    
+    {foreach $children as $child }
+        {node_view_gui view='line' content_node=$child}
+    {/foreach}
+
     {include name=navigator
          uri='design:navigator/google.tpl'
          page_uri=$node.url_alias
          item_count=$children_count
          view_parameters=$view_parameters
          item_limit=$page_limit}
-{else}         
-    <p>Ничего нет</p>
+
 {/if}
