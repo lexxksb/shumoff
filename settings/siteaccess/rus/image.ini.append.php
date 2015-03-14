@@ -8,10 +8,15 @@ AliasList[]=large
 AliasList[]=review
 AliasList[]=partner
 AliasList[]=lineBlock
+AliasList[]=news
 
 [lineBlock]
 Reference=
 Filters[]=geometry/thumbnailize=180;130
+
+[news]
+Reference=
+Filters[]=geometry/thumbnailize=180;140
 
 [review]
 Reference=

@@ -110,6 +110,19 @@ MatchFile=full/full_contacts.tpl
 Subdir=templates
 Match[class_identifier]=contacts
 
+[full_news]
+Source=node/view/full.tpl
+MatchFile=full/full_news.tpl
+Subdir=templates
+Match[class_identifier]=folder
+Match[section]=10
+
+[full_onenews]
+Source=node/view/full.tpl
+MatchFile=full/full_onenews.tpl
+Subdir=templates
+Match[class_identifier]=news
+
 [full_reviews]
 Source=node/view/full.tpl
 MatchFile=full/full_rewiews.tpl
@@ -129,6 +142,11 @@ MatchFile=line/rewiew.tpl
 Subdir=templates
 Match[class_identifier]=review
 
+[line_news]
+Source=node/view/line.tpl
+MatchFile=line/line_news.tpl
+Subdir=templates
+Match[class_identifier]=news
 
 [full_partners]
 Source=node/view/full.tpl
