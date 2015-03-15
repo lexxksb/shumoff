@@ -44,6 +44,7 @@ module.exports = function(grunt) {
 					'js/vendor/modernizr-2.6.2-respond-1.1.0.min.js',
                     'js/vendor/jquery.colorbox.js',
                     'js/vendor/bootstrap.min.js',
+                    'js/vendor/accounting.js',
 					'js/main.js'
 				],
 				dest: 'js/production.min.js'

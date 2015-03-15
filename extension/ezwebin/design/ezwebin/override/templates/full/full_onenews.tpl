@@ -4,7 +4,7 @@
 )}
 <h1>{$node.data_map.name.content|wash()}</h1>
 
-<div class="date">{$node.data_map.date.content.timestamp|datetime( 'custom', '%j %F %Y' )}</div>
+<div class="date">{$node.data_map.date.content.timestamp|l10n( 'date' )}</div>
 
 <div class="row">
     {if $node.data_map.image.has_content}

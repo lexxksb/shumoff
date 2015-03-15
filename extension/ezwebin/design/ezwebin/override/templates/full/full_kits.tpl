@@ -1,34 +1,17 @@
-<h1>{$node.data_map.name.content|wash()}</h1>
+{set scope=global persistent_variable=hash(
+    'meta_description', $node.object.data_map.meta_description.content|wash,
+    'site_title', $node.object.data_map.meta_title.content|wash
+)}
+<h1>{$node.data_map.name.content|wash}</h1>
 
-{def $page_limit = 10
-     $classes = array('product')
-     $filter_type = 'include'
-     $children = array()
-     $children_count = ''}
+{attribute_view_gui attribute=$node.object.data_map.description}
 
-{set $children_count=fetch_alias( 'children_count', hash( 'parent_node_id', $node.node_id,
-                                                          'class_filter_type', $filter_type,
-                                                          'class_filter_array', $classes ) )}
-{if $children_count}                                                          
-    {set $children = fetch_alias( 'children', hash( 'parent_node_id', $node.node_id,
-                                                'offset', $view_parameters.offset,
-                                                'sort_by', $node.sort_array,
-                                                'class_filter_type', $filter_type,
-                                                'class_filter_array', $classes,
-                                                'limit', $page_limit ) ) }
-
-    <div class="content-view-children">
-        {foreach $children as $child }
-            {node_view_gui view='line' content_node=$child}
-        {/foreach}
-    </div>
-    
-    {include name=navigator
-         uri='design:navigator/google.tpl'
-         page_uri=$node.url_alias
-         item_count=$children_count
-         view_parameters=$view_parameters
-         item_limit=$page_limit}
-{else}         
-    <p>Ничего нет</p>
-{/if}
+{def $children = fetch_alias( 'children', hash( 'parent_node_id', $node.node_id,
+                                            'sort_by', $node.sort_array,
+                                            'class_filter_type', 'include',
+                                            'class_filter_array', array('product') ) ) }
+<ul class="flexBlock kits">
+{foreach $children as $child }
+    <li>{node_view_gui view='line' content_node=$child}</li>
+{/foreach}
+</ul>

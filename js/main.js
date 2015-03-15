@@ -1,6 +1,50 @@
 $(document).ready(function(){
 
-    $(".toBasket").colorbox({inline:true, href:"#inline_content", width:"40%", opacity: "0.5"});
+    if(window.kitOptions !== undefined){
+
+        var priceObject     = $("#price");
+        var price           = priceObject.data("price") || 0;
+        var ezOptionValue   = 0;
+
+        change();
+
+        $('input[name="first"], input[name="second"]').on('click', function(){
+            change();
+        });
+
+        function change(){
+            var first   = $('input[name="first"]:checked').val();
+            var second  = $('input[name="second"]:checked').val();
+            ezOptionValue = kitOptions[first][second][0];
+            priceObject.html( accounting.formatMoney(price + kitOptions[first][second][1], "", 0, " ", "") );
+        }
+    }
+
+    $(".toBasket").on('click', function(e){
+        e.preventDefault();
+
+        var cb = $("#basketText").data("count"),
+            toPost = new Object();
+
+        toPost.ContentNodeID = priceObject.data("nodeid");
+        toPost.ContentObjectID = priceObject.data("objectid");
+        toPost.ViewMode = "full";
+        toPost.ActionAddToBasket = "";
+
+        if(window.kitOptions !== undefined) {
+            var opt = new Object();
+            opt[priceObject.data("optionid")] = ezOptionValue;
+            toPost.eZOption = opt;
+        }
+
+        $.post( "/store/action", toPost, function() {
+        })
+        .done(function() {
+            $("#basketText").data("count", ++cb).text(cb);
+            $.colorbox({inline:true, href:"#inline_content", width:"40%", opacity: "0.5"});
+        });
+
+    });
 
     $(".colorboxClose").on("click", function(e){
         e.preventDefault();

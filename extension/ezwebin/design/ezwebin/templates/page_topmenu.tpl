@@ -25,7 +25,7 @@
                 <a {if $item_class} class="{$item_class|implode(" ")}"{/if} href={$item.url_alias|ezurl}>{$item.name|wash()}</a>
             {/foreach}
         {/if}
-        <a class="navbar-brand navbar-right basket" href={"/store/basket/"|ezurl}><div class="icon-basket"></div>{if $basket.is_empty}Корзина пуста{else}{$basket.items|count()}{/if}</a>
+        <a class="navbar-brand navbar-right basket" href={"/store/basket/"|ezurl}><div class="icon-basket"></div><span id="basketText" data-count="{$basket.items|count()}">{if $basket.is_empty}Корзина пуста{else}{$basket.items|count()}{/if}</span></a>
         {undef $root_node $top_menu_items $item_class $top_menu_items_count $current_node_in_path $basket}
     </div>
 </div>

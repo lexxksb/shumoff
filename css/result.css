@@ -649,12 +649,10 @@ header .navbar .navbar-header .basket .icon-basket {
 .content .kitItem .ttxKit a:hover {
   font-size: 18px;
 }
-.content .kitItem .ttxKit blockquote {
-  border: none;
-  padding-left: 0px;
-  margin-bottom: 0;
+.content .kitItem .ttxKit .quote {
+  padding: 10px 20px 10px 0;
 }
-.content .kitItem .ttxKit blockquote p {
+.content .kitItem .ttxKit .quote p {
   margin-bottom: 2px;
 }
 .content .soputka {
