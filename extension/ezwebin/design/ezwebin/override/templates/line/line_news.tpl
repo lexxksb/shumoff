@@ -6,7 +6,7 @@
     {/if}
     <div class="media-body">
         {if $node.data_map.date.has_content}
-            <div class="date">{$node.data_map.date.content.timestamp|datetime( 'custom', '%d %F %Y' )}</div>
+            <div class="date">{$node.data_map.date.content.timestamp|datetime( 'custom', '%j %F %Y' )}</div>
         {/if}
         <div class="media-heading"><a href={$node.url_alias|ezurl}>{$node.data_map.name.content|wash}</a></div>
         {attribute_view_gui attribute=$node.data_map.short_description}
