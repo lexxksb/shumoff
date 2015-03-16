@@ -14,7 +14,7 @@ if ($user->isRegistered()) {
 }
 
 // Initialize variables
-$street1 = $street2 = $zip = $place = $state = $country = $comment = $payment = '';
+$street1 = $street2 = $zip = $place = $state = $country = $comment = $payment = $phone = '';
 
 // Check if user has an earlier order, copy order info from that one
 $orderList = eZOrder::activeByUserID($user->attribute('contentobject_id'));
@@ -28,42 +28,33 @@ if (count($orderList) > 0 and $user->isRegistered()) {
 	$country = $accountInfo['country'];
 }
 
+$tpl->setVariable("input_error", false);
 if ( $http->hasPostVariable( "CheckoutButton" ) or ( $doCheckout === true ) ){
 
-    $tpl->setVariable("input_error", false);
     $inputIsValid = true;
     
     $firstName = $http->postVariable("FirstName");
-    if (trim($firstName) == "")
-    	$inputIsValid = false;
     $lastName = $http->postVariable("LastName");
-    if (trim($lastName) == "")
-    	$inputIsValid = false;
     $email = $http->postVariable("EMail");
-    if (!eZMail::validate($email))
-    	$inputIsValid = false;
-    
-    $street1 = $http->postVariable("Street1");
-//     $street2 = $http->postVariable("Street2");
-    if (trim($street1) == "")
-    	$inputIsValid = false;
-    
-    $zip = $http->postVariable("Zip");
-    if (trim($zip) == "")
-    	$inputIsValid = false;
-    $place = $http->postVariable("Place");
-    if (trim($place) == "")
-    	$inputIsValid = false;
     $state = $http->postVariable("State");
+    $street1 = $http->postVariable("Street1");
+//    $street2 = $http->postVariable("Street2");
+    $zip = $http->postVariable("Zip");
+    $place = $http->postVariable("Place");
     $shipping = $http->postVariable("shipping");
     $payment = $http->postVariable("payment");
     $phone = $http->postVariable("phone");
-    // $country = $http->postVariable("Country");
-    // if (trim($country) == "")
-    // 	$inputIsValid = false;
-    
     $comment = $http->postVariable("Comment");
-    
+
+    if (trim($firstName) == "")
+        $inputIsValid = false;
+    if (trim($street1) == "")
+        $inputIsValid = false;
+    if (trim($place) == "")
+        $inputIsValid = false;
+    if (trim($phone) == "")
+        $inputIsValid = false;
+
     if ($inputIsValid == true) {
     	// Check for validation
     	$basket = eZBasket::currentBasket();
@@ -141,7 +132,7 @@ if ( $http->hasPostVariable( "CheckoutButton" ) or ( $doCheckout === true ) ){
 $tpl->setVariable("first_name", $firstName);
 $tpl->setVariable("last_name", $lastName);
 $tpl->setVariable("email", $email);
-
+$tpl->setVariable("phone", $phone);
 $tpl->setVariable("street1", $street1);
 $tpl->setVariable("street2", $street2);
 $tpl->setVariable("zip", $zip);

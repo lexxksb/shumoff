@@ -51,6 +51,7 @@ $(document).ready(function(){
         $.colorbox.close();
     })
 
+    // TODO сделать проверку на существование .promoBlock2 .infoBlock
     var _h = 0;
     $(".promoBlock2 .infoBlock").each(function(i,v){
         if($(v).innerHeight() > _h){
@@ -96,4 +97,39 @@ $(document).ready(function(){
         });
     }
 
+    var basket = $("#basket");
+    if(basket.length){
+        $("#delivery input").on('click', function() {
+            setcookie("shipping", $(this).val(), null, "/");
+            $("#CheckoutButton").click();
+        });
+
+        $(".input-group-addon").on('click', function() {
+            var elem = $(this),
+                input = $("#count" + elem.data("id"));
+            if(elem.data("type") == "inc"){
+                input.val(function(i, oldval) {
+                    return ++oldval;
+                });
+            }else{
+                input.val(function(i, oldval) {
+                    return oldval>0 ? --oldval : 0;
+                });
+            }
+        });
+
+        $(".remove").on('click', function(e) {
+            $(this).next().removeAttr("disabled");
+        });
+    }
+
 });
+
+function setcookie(name, value, expires, path, domain, secure) {	// Send a cookie
+    expires instanceof Date ? expires = expires.toGMTString() : typeof(expires) == 'number' && (expires = (new Date(+(new Date) + expires * 1e3)).toGMTString());
+    var r = [name + "=" + escape(value)], s, i;
+    for(i in s = {expires: expires, path: path, domain: domain}){
+        s[i] && r.push(i + "=" + s[i]);
+    }
+    return secure && r.push("secure"), document.cookie = r.join(";"), true;
+}

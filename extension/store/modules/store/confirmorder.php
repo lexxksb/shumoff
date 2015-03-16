@@ -26,7 +26,7 @@ if ($xmlString != null) {
     $success        = $dom->loadXML($xmlString);
     $node           = $dom->getElementsByTagName('payment')->item(0);
     $paymentName    = $node->textContent;
-    $needRedirect   = (bool) $ini->variable($paymentName . 'info', 'redirect');
+    $needRedirect   = (bool) $ini->variable($paymentName . 'Info', 'redirect');
 }
 
 // if ( $order instanceof eZOrder )

@@ -30,7 +30,7 @@ class StoreShippingHandler
         if(isset($_COOKIE["shipping"]) && $select = $_COOKIE["shipping"])
             $def = $select;
         else
-           $def = $data["default"];
+            $def = $data["default"];
         return array($data["types"][$def]["name"], $data["types"][$def]["cost"]);
     }
     

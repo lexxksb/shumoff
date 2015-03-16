@@ -8,9 +8,9 @@ class storeParseConfig{
         foreach ($types as &$type){
             $ntype[$type] = array(
                 "code" => $type,
-                "name" => $ini->variable( $type."info", "name" ),
-                "description" => $ini->variable( $type."info", "description" ),
-                "cost" => $ini->variable( $type."info", "cost" )
+                "name" => $ini->variable( $type."Info", "name" ),
+                "description" => $ini->variable( $type."Info", "description" ),
+                "cost" => $ini->variable( $type."Info", "cost" )
             ); 
         }
         $data["types"] = $ntype;
@@ -24,9 +24,9 @@ class storeParseConfig{
         foreach ($types as &$type){
             $ntype[$type] = array(
                 "code" => $type,
-                "name" => $ini->variable( $type."info", "name" ),
-                "description" => $ini->variable( $type."info", "description" ),
-                "cost" => $ini->variable( $type."info", "cost" )
+                "name" => $ini->variable( $type."Info", "name" ),
+                "description" => $ini->variable( $type."Info", "description" ),
+                "cost" => $ini->variable( $type."Info", "cost" )
             );
         }
         $data["types"] = $ntype;
