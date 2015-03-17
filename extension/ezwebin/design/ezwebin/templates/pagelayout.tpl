@@ -35,10 +35,12 @@
         {include uri='design:page_topmenu.tpl'}
     </header>
 
-    {include uri='design:facade.tpl'}
+    {if and(is_set($module_result.node_id), $module_result.node_id|eq(2))}
+        {include uri='design:facade.tpl'}
+    {/if}
 
     <div class="content">
-        {if $module_result.node_id|eq(2)}
+        {if and(is_set($module_result.node_id), $module_result.node_id|eq(2))}
             {include uri='design:page_mainarea.tpl'}
         {else}
             {def $subnodes = fetch( 'content', 'list', hash(

@@ -9,7 +9,7 @@
         $top_menu_items_count = $top_menu_items|count()
         $item_class = array()
         $current_node_in_path = first_set($pagedata.path_array[1].node_id, 0 )
-        $basket = fetch( shop, basket )}
+        $_basket = fetch( shop, basket )}
         {if $top_menu_items_count}
             {foreach $top_menu_items as $key => $item}
                 {set $item_class = cond($current_node_in_path|eq($item.node_id), array("navbar-brand navbar-active"), array("navbar-brand"))}
@@ -25,7 +25,7 @@
                 <a {if $item_class} class="{$item_class|implode(" ")}"{/if} href={$item.url_alias|ezurl}>{$item.name|wash()}</a>
             {/foreach}
         {/if}
-        <a class="navbar-brand navbar-right basket" href={"/store/basket/"|ezurl}><div class="icon-basket"></div><span id="basketText" data-count="{$basket.items|count()}">{if $basket.is_empty}Корзина пуста{else}{$basket.items|count()}{/if}</span></a>
-        {undef $root_node $top_menu_items $item_class $top_menu_items_count $current_node_in_path $basket}
+        <a class="navbar-brand navbar-right basket" href={"/store/basket/"|ezurl}><div class="icon-basket"></div><span id="basketText" data-count="{$_basket.items|count()}">{if $_basket.is_empty}Корзина пуста{else}{$_basket.items|count()}{/if}</span></a>
+        {undef $root_node $top_menu_items $item_class $top_menu_items_count $current_node_in_path $_basket}
     </div>
 </div>

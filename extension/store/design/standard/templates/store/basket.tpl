@@ -1,3 +1,8 @@
+{set scope=global persistent_variable=hash(
+    'meta_description', "",
+    'site_title', "Корзина"
+)}
+
 <ul class="breadcrumb">
     <li><a href={"/"|ezurl}>Шумофф</a></li>
     <li class="active">Корзина</li>

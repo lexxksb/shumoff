@@ -1,6 +1,6 @@
 {default enable_help=true() enable_link=false() canonical_link=true()}
 
-{if $module_result.content_info.persistent_variable.site_title}
+{if and( is_set($module_result.content_info), $module_result.content_info.persistent_variable.site_title)}
     {def $site_title=$module_result.content_info.persistent_variable.site_title|wash}
 {else}
     {let name=Path
@@ -33,7 +33,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {if $module_result.content_info.persistent_variable.meta_description}
+    {if and( is_set($module_result.content_info), $module_result.content_info.persistent_variable.meta_description)}
         <meta name="description" content="{$module_result.content_info.persistent_variable.meta_description|wash}">
     {/if}
     {*foreach $site.http_equiv as $key => $item}

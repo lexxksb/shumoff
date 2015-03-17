@@ -1,4 +1,3 @@
-{if $module_result.node_id|eq(2)}
 <div class="facade">
     <div class="relative">
         <div class="car">
@@ -65,4 +64,3 @@
         {/if}
     </div>
 </div>
-{/if}

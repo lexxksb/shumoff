@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        <div class="weight">Вес комплекта: 0,69 кг</div>
+        {*<div class="weight">Вес комплекта: 0,69 кг</div>*}
 
         <div class="row">
             <div class="col-md-6">
