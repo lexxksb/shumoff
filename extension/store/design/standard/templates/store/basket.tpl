@@ -12,20 +12,12 @@
 
 {if $basket.items|count}
 
-    {def $currency      = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
-        $locale         = false()
-        $symbol         = false()
-        $itemObject     = array()
+    {def $itemObject     = array()
         $shippingType   = ezini( 'Shipping', 'type', 'store.ini' )
         $ship           = cond(ezhttp( "shipping", "cookie" ), ezhttp( "shipping", "cookie" ), ezini( 'Shipping', 'default', 'store.ini' ))
         $paydef         = cond($payment, $payment, ezini( 'Payment', 'default', 'store.ini' ))
         $paymentType    = ezini( 'Payment', 'type', 'store.ini' )
     }
-
-    {if $currency}
-        {set locale = $currency.locale
-             symbol = $currency.symbol}
-    {/if}
 
     {section show=$removed_items}
         <div class="warning">
@@ -115,10 +107,10 @@
         </tbody></table>
     </form>
 
-    <form method="post" action={"/store/basket/"|ezurl}>
-        <div class="order">
-            <div class="title">Оформить заказ</div>
-            <div class="row">
+    <div class="order">
+        <div class="title">Оформить заказ</div>
+        <div class="row">
+            <form method="post" id="shipPaymentForm" action={"/store/basket/"|ezurl}>
                 <div class="col-md-4" id="delivery">
                     <div class="rowTitle">Доставка</div>
                     {def $ident = "" $desc = ""}
@@ -127,7 +119,7 @@
                              $desc   = ezini($ident, 'description', 'store.ini' )}
                         <div class="radio">
                             <label for="{$type}">
-                                <input type="radio" {if $ship|eq($type)} checked="checked" {/if} name="shipping" value="{$type}" id="{$type}" >
+                                <input type="radio" {if $ship|eq($type)} checked="checked" {/if} name="_shipping" value="{$type}" id="{$type}" >
                                 <div class="name">{ezini( $ident, 'name', 'store.ini' )}</div>
                                 {if $desc}
                                     <div class="icon-cHelp icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="{$desc}"></div>
@@ -137,7 +129,7 @@
                     {/foreach}
                     {undef $ident $desc}
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" id="pay">
                     <div class="rowTitle">Оплата</div>
                     {def $ident = "" $desc = ""}
                     {foreach $paymentType as $type}
@@ -145,7 +137,7 @@
                              $desc = ezini($ident, 'description', 'store.ini' )}
                         <div class="radio">
                             <label for="{$type}">
-                                <input type="radio" {if $paydef|eq($type)} checked="checked" {/if} name="payment" id="{$type}" value="{$type}">
+                                <input type="radio" {if $paydef|eq($type)} checked="checked" {/if} name="_payment" id="{$type}" value="{$type}">
                                 <div class="name">{ezini( $ident, 'name', 'store.ini' )}</div>
                                 {if $desc}
                                     <div class="icon-cHelp icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="{$desc}"></div>
@@ -156,7 +148,13 @@
                     {undef $ident $desc}
                 </div>
                 <div class="col-md-4"></div>
-            </div>
+            </form>
+        </div>
+
+        <form method="post" action={"/store/basket/"|ezurl}>
+
+            <input type="hidden" value="{$ship}" name="shipping" />
+            <input type="hidden" value="{$paydef}" name="payment" />
 
             <div class="rowTitle">Контактные данные</div>
             {if $input_error}
@@ -197,11 +195,9 @@
             </div>
 
             <button type="submit" class="btn btn-shumoff" name="CheckoutButton" id="CheckoutButton">Купить</button>
-
-        </div>
-    </form>
-
-    {undef $currency $locale $symbol $itemObject $shippingType $ship $paydef $paymentType}
+        </form>
+    </div>
+    {undef $itemObject $shippingType $ship $paydef $paymentType}
 {else}
     <p>Корзина пуста</p>
 {/if}

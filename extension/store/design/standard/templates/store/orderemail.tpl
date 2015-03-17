@@ -1,40 +1,32 @@
 {set-block scope=root variable=subject}{"Order"|i18n("design/standard/shop")}: {$order.order_nr}{/set-block}
 <h1>{"Order"|i18n("design/standard/shop")}: {$order.order_nr}</h1>
-<h3>{"Customer"|i18n("design/standard/shop")}</h3>
+
 <table width="50%" cellspacing="0" cellpadding="0" border="0">
     <tr>
         <td valign="top">
-            <p>
-                <b>{"Customer"|i18n("design/standard/shop")}</b>
-            </p>
-            <p>
-                {'Name'|i18n('design/standard/shop')}: {$order.account_information.first_name} {$order.account_information.last_name}<br />
-                {'Email'|i18n('design/standard/shop')}: {$order.account_information.email}<br />
-            </p>
+            <p><b>{"Customer"|i18n("design/standard/shop")}</b></p>
+            <p>{'Name'|i18n('design/standard/shop')}: {$order.account_information.first_name|wash} {$order.account_information.last_name|wash}</p>
+            <p>Телефон: {$order.account_information.phone|wash}</p>
+            {if $order.account_information.email}
+                <p>{'Email'|i18n('design/standard/shop')}: {$order.account_information.email|wash}</p>
+            {/if}
         </td>
         <td valign="top">
-            <p>
-                <b>{"Address"|i18n("design/standard/shop")}</b>
-            </p>
-            <p>
-                {'Street'|i18n('design/standard/shop')}: {$order.account_information.street1}<br /> {'Zip'|i18n('design/standard/shop')}:
-                {$order.account_information.zip}<br /> {'Place'|i18n('design/standard/shop')}: {$order.account_information.place}<br />
-                {'State'|i18n('design/standard/shop')}: {$order.account_information.state}<br />
-            </p>
+            <p><b>{"Address"|i18n("design/standard/shop")}</b></p>
+            <p>{'Place'|i18n('design/standard/shop')}: {$order.account_information.place|wash}</p>
+            <p>{'Street'|i18n('design/standard/shop')}: {$order.account_information.street1|wash}</p>
         </td>
     </tr>
 </table>
+<p><b>Оплата:</b>&nbsp;{def $ident = concat($order.account_information.payment,'Info')}{ezini( $ident, 'name', 'store.ini' )}</p>
 {if $order.account_information.comment}
-<p>
-    <b>{'Comment'|i18n( 'design/standard/shop' )}</b>
-</p>
-<p>{$order.account_information.comment|wash|nl2br}</p>
+    <p><b>{'Comment'|i18n( 'design/standard/shop' )}</b></p>
+    <p>{$order.account_information.comment|wash|nl2br}</p>
 {/if}
-<h3>{"Product items"|i18n("design/standard/shop")}</h3>
-{def $currency = fetch( 'shop', 'currency', hash( 'code', $order.productcollection.currency_code ) ) 
-    $locale = false() 
-    $symbol = false()}
-{if $currency} {set locale = $currency.locale symbol = $currency.symbol} {/if}
+
+<h3>Товары</h3>
+
+{def $itemObject = array()}
 <table cellspacing="2" cellpadding="2" border="1" width="80%">
     <tr>
         <th>Товар</th>
@@ -42,24 +34,31 @@
         <th>Цена</th>
         <th>Количество</th>
     </tr>
-    {section name=ProductItem loop=$order.product_items show=$order.product_items}
-    <tr>
-        <td>{$ProductItem:item.object_name}</td>
-        <td>{$ProductItem:item.item_count}</td>
-        <td>{$ProductItem:item.price_inc_vat|l10n( 'currency', $locale, $symbol )}</td>
-        <td>{$ProductItem:item.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}</td>
-    </tr>
-    {/section}
+
+    {foreach $order.product_items as $item}
+        <tr>
+            <td>
+                {set $itemObject = fetch( 'content', 'node', hash( 'node_id', $item.node_id ) )}
+                {$itemObject.data_map.name.content|wash}
+                {foreach $item.item_object.option_list as $option}
+                    {$option.value}{delimiter}&nbsp;|&nbsp;{/delimiter}
+                {/foreach}
+            </td>
+            <td>{$item.item_count|wash}</td>
+            <td>{$item.price_inc_vat|l10n( 'currency' )} руб</td>
+            <td>{$item.total_price_inc_vat|l10n( 'currency' )} руб</td>
+        </tr>
+    {/foreach}
 </table>
 <p>
-    {"Subtotal of items"|i18n("design/standard/shop")}: <b>{$order.product_total_inc_vat|l10n( 'currency', $locale, $symbol )}</b>
+    {"Subtotal of items"|i18n("design/standard/shop")}: <b>{$order.product_total_inc_vat|l10n( 'currency' )} руб</b>
 </p>
-{section name=OrderItem loop=$order.order_items show=$order.order_items}
-<p>
-    {$OrderItem:item.description}: <b>{$OrderItem:item.price_inc_vat|l10n( 'currency', $locale, $symbol )}</b>
-</p>
-{/section}
+    {section name=OrderItem loop=$order.order_items show=$order.order_items}
+    <p>
+        {$OrderItem:item.description}: <b>{$OrderItem:item.price_inc_vat|l10n( 'currency' )} руб</b>
+    </p>
+    {/section}
 <h3>
-    {"Order total"|i18n("design/standard/shop")}: <b>{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</b>
+    {"Order total"|i18n("design/standard/shop")}: <b>{$order.total_inc_vat|l10n( 'currency' )} руб</b>
 </h3>
-{undef $currency $locale $symbol}
+{undef $itemObject}

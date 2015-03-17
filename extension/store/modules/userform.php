@@ -41,10 +41,11 @@ if ( $http->hasPostVariable( "CheckoutButton" ) or ( $doCheckout === true ) ){
 //    $street2 = $http->postVariable("Street2");
     $zip = $http->postVariable("Zip");
     $place = $http->postVariable("Place");
-    $shipping = $http->postVariable("shipping");
-    $payment = $http->postVariable("payment");
     $phone = $http->postVariable("phone");
     $comment = $http->postVariable("Comment");
+
+    $shipping = $http->postVariable("shipping");
+    $payment = $http->postVariable("payment");
 
     if (trim($firstName) == "")
         $inputIsValid = false;

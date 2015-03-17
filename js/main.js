@@ -51,17 +51,19 @@ $(document).ready(function(){
         $.colorbox.close();
     })
 
-    // TODO сделать проверку на существование .promoBlock2 .infoBlock
-    var _h = 0;
-    $(".promoBlock2 .infoBlock").each(function(i,v){
-        if($(v).innerHeight() > _h){
-            _h = $(v).innerHeight();
-        }
-    });
-    if(_h > 0) {
-        $(".promoBlock2 .infoBlock").each(function (i, v) {
-            $(v).height(_h);
+    var infoBlock = $(".promoBlock2 .infoBlock");
+    if(infoBlock.length) {
+        var _h = 0;
+        infoBlock.each(function (i, v) {
+            if ($(v).innerHeight() > _h) {
+                _h = $(v).innerHeight();
+            }
         });
+        if (_h > 0) {
+            infoBlock.each(function (i, v) {
+                $(v).height(_h);
+            });
+        }
     }
 
     $('[data-toggle="tooltip"]').tooltip();
@@ -73,6 +75,7 @@ $(document).ready(function(){
         _this.hide();
     });
 
+    /*Контакты*/
     var address = $("#map");
     if(address.length) {
         ymaps.ready(function () {
@@ -97,11 +100,15 @@ $(document).ready(function(){
         });
     }
 
+    /*Корзина*/
     var basket = $("#basket");
     if(basket.length){
         $("#delivery input").on('click', function() {
             setcookie("shipping", $(this).val(), null, "/");
-            $("#CheckoutButton").click();
+            $("#shipPaymentForm").submit();
+        });
+        $("#pay input").on('click', function() {
+            $("[name='payment']").val($(this).val());
         });
 
         $(".input-group-addon").on('click', function() {

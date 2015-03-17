@@ -55,7 +55,8 @@
 </tr>
 <tr>
     <td>Оплата</td>
-    <td>{def $ident = concat($order.account_information.payment,'Info')}{ezini( $ident, 'name', 'store.ini' )}</td>
+    <td>{def $ident = concat($order.account_information.payment,'Info')}
+        {ezini( $ident, 'name', 'store.ini' )}</td>
 </tr>
 <tr>
     <td>Комментарий</td>

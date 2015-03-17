@@ -12,7 +12,7 @@ description=Стоимость доставки 200 руб. При заказе 
 cost=200
 
 [cashInfo]
-description=Наличными описание
+description=
 
 [cashlessInfo]
 description=Безналичный перевод описание
