@@ -13,7 +13,7 @@
         </td>
     </tr>
     {if $order.order_items|count()}
-        {foreach $order.order_items as $order_item sequence}
+        {foreach $order.order_items as $order_item}
             <tr>
                 <td>
                     Доставка: {$order_item.description}
