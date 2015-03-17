@@ -108,7 +108,9 @@
             </td>
         </tr>
         </tbody></table>
+    </form>
 
+    <form method="post" action={"/store/basket/"|ezurl}>
         <div class="order">
             <div class="title">Оформить заказ</div>
             <div class="row">
@@ -116,7 +118,7 @@
                     <div class="rowTitle">Доставка</div>
                     {def $ident = "" $desc = ""}
                     {foreach $shippingType as $type}
-                        {set $ident      = concat($type, 'Info')
+                        {set $ident  = concat($type, 'Info')
                              $desc   = ezini($ident, 'description', 'store.ini' )}
                         <div class="radio">
                             <label for="{$type}">
@@ -161,11 +163,11 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Ваше имя *:</label>
-                        <input type="text" name="FirstName" class="form-control" placeholder="Иванов Иван Иванович" value="{$first_name|wash}" required="required">
+                        <input type="text" name="FirstName" class="form-control" placeholder="Иванов Иван Иванович" value="{$first_name|wash}" required="required" >
                     </div>
                     <div class="form-group">
                         <label>Телефон *:</label>
-                        <input type="tel" name="phone" class="form-control" placeholder="" value="{$phone|wash}" required="required">
+                        <input type="tel" name="phone" class="form-control" placeholder="" value="{$phone|wash}" required="required" >
                     </div>
                     <div class="form-group">
                         <label>Email:</label>
@@ -175,11 +177,11 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Город *:</label>
-                        <input type="text" name="Place" class="form-control" placeholder="г. Екатеринбург" value="{$place|wash}" required="required">
+                        <input type="text" name="Place" class="form-control" placeholder="г. Екатеринбург" value="{$place|wash}" required="required" >
                     </div>
                     <div class="form-group">
                         <label>Адрес доставки *:</label>
-                        <input type="text" name="Street1" class="form-control" placeholder="ул. Первомайская 5-300" value="{$street1|wash}" required="required">
+                        <input type="text" name="Street1" class="form-control" placeholder="ул. Первомайская 5-300" value="{$street1|wash}" required="required" >
                     </div>
                     <div class="form-group">
                         <label>Комментарий к заказу:</label>
