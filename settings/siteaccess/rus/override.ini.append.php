@@ -85,6 +85,13 @@ Subdir=templates
 Match[class_identifier]=flash
 
 
+[full_partmaterials]
+Source=node/view/full.tpl
+MatchFile=full/listpartmaterials.tpl
+Subdir=templates
+Match[class_identifier]=folder
+Match[section]=11
+
 [full_instructions]
 Source=node/view/full.tpl
 MatchFile=full/full_instructions.tpl
@@ -135,6 +142,24 @@ Source=node/view/full.tpl
 MatchFile=full/rewiew.tpl
 Subdir=templates
 Match[class_identifier]=review
+
+[full_typematerial]
+Source=node/view/full.tpl
+MatchFile=full/typematerial.tpl
+Subdir=templates
+Match[class_identifier]=typematerial
+
+[line_partmaterials]
+Source=node/view/line.tpl
+MatchFile=line/partmaterials.tpl
+Subdir=templates
+Match[class_identifier]=partmaterials
+
+[line_typematerial]
+Source=node/view/line.tpl
+MatchFile=line/typematerial.tpl
+Subdir=templates
+Match[class_identifier]=typematerial
 
 [line_review]
 Source=node/view/line.tpl

@@ -8,4 +8,7 @@ ShowClasses[]=user_group
 ShowClasses[]=partcomplects
 ShowClasses[]=frontpage
 ShowClasses[]=product
-*/ ?>
+ShowClasses[]=partmaterials
+ShowClasses[]=typematerial
+ShowClasses[]=material
+*/

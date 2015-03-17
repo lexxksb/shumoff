@@ -11,6 +11,11 @@ AliasList[]=lineBlock
 AliasList[]=news
 AliasList[]=onenews
 AliasList[]=kit
+AliasList[]=typematerial
+
+[typematerial]
+Reference=
+Filters[]=geometry/thumbnailize=110;110
 
 [kit]
 Reference=
