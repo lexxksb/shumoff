@@ -12,6 +12,11 @@ AliasList[]=news
 AliasList[]=onenews
 AliasList[]=kit
 AliasList[]=typematerial
+AliasList[]=material
+
+[material]
+Reference=
+Filters[]=geometry/thumbnailize=232;165
 
 [typematerial]
 Reference=

@@ -540,6 +540,9 @@ header .navbar .navbar-header .basket .icon-basket {
 .content .itemMaterials li .block .count .input-group .input-group-addon {
   cursor: pointer;
 }
+.content .itemMaterials li .block .count .input-group .form-control {
+  text-align: center;
+}
 .content .itemMaterials li .block .add {
   margin-top: 5px;
 }

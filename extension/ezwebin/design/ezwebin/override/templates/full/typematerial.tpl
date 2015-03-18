@@ -7,112 +7,15 @@
 
 {attribute_view_gui attribute=$node.object.data_map.short_description}
 
+{def $children = fetch_alias( 'children', hash( 'parent_node_id', $node.node_id,
+                                        'sort_by', $node.sort_array,
+                                        'class_filter_type', 'include',
+                                        'class_filter_array', array('material')) ) }
+
 <ul class="flexBlock itemMaterials">
-    <li>
-        <div class="block">
-            <div class="title">Шумофф М1.2</div>
-            <img class="img-responsive" src="http://placehold.it/232x165" alt="...">
-            <div class="price">
-                <div class="text">Цена:</div>
-                <div class="priceBlock">50 <span class="icon-ruble"></span><span class="from">/лист</span></div>
-            </div>
-            <div class="count">
-                <div class="text">Количество:</div>
-                <div class="input-group">
-                    <span class="input-group-addon">-</span>
-                    <input type="text" class="form-control" value="259" aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-addon">+</span>
-                </div>
-            </div>
-            <div class="add">
-                <div class="notAvailable">Нет в наличии</div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="block">
-            <div class="title">Шумофф М2</div>
-            <img class="img-responsive" src="http://placehold.it/232x165" alt="...">
-            <div class="price">
-                <div class="text">Цена:</div>
-                <div class="priceBlock">50 <span class="icon-ruble"></span><span class="from">/лист</span></div>
-            </div>
-            <div class="count">
-                <div class="text">Количество:</div>
-                <div class="input-group">
-                    <span class="input-group-addon">-</span>
-                    <input type="text" class="form-control" value="259" aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-addon">+</span>
-                </div>
-            </div>
-            <div class="add">
-                <button class="btn btn-shumoff toBasket cboxElement"><div class="icon-basket"></div>Добавить в корзину</button>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="block">
-            <div class="title">Шумофф М1.2</div>
-            <img class="img-responsive" src="http://placehold.it/232x165" alt="...">
-            <div class="price">
-                <div class="text">Цена:</div>
-                <div class="priceBlock">50 <span class="icon-ruble"></span><span class="from">/лист</span></div>
-            </div>
-            <div class="count">
-                <div class="text">Количество:</div>
-                <div class="input-group">
-                    <span class="input-group-addon">-</span>
-                    <input type="text" class="form-control" value="259" aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-addon">+</span>
-                </div>
-            </div>
-            <div class="add">
-                <button class="btn btn-shumoff toBasket cboxElement"><div class="icon-basket"></div>Добавить в корзину</button>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="block">
-            <div class="title">Шумофф М1.2.</div>
-            <img class="img-responsive" src="http://placehold.it/232x165" alt="...">
-            <div class="price">
-                <div class="text">Цена:</div>
-                <div class="priceBlock">50 <span class="icon-ruble"></span><span class="from">/лист</span></div>
-            </div>
-            <div class="count">
-                <div class="text">Количество:</div>
-                <div class="input-group">
-                    <span class="input-group-addon">-</span>
-                    <input type="text" class="form-control" value="259" aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-addon">+</span>
-                </div>
-            </div>
-            <div class="add">
-                <button class="btn btn-shumoff toBasket cboxElement"><div class="icon-basket"></div>Добавить в корзину</button>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="block">
-            <div class="title">Шумофф М1.2. 36</div>
-            <img class="img-responsive" src="http://placehold.it/232x165" alt="...">
-            <div class="price">
-                <div class="text">Цена:</div>
-                <div class="priceBlock">50 <span class="icon-ruble"></span><span class="from">/лист</span></div>
-            </div>
-            <div class="count">
-                <div class="text">Количество:</div>
-                <div class="input-group">
-                    <span class="input-group-addon">-</span>
-                    <input type="text" class="form-control" value="259" aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-addon">+</span>
-                </div>
-            </div>
-            <div class="add">
-                <button class="btn btn-shumoff toBasket cboxElement"><div class="icon-basket"></div>Добавить в корзину</button>
-            </div>
-        </div>
-    </li>
+    {foreach $children as $child}
+        <li>{node_view_gui view='line' content_node=$child}</li>
+    {/foreach}
 </ul>
 
 {if $node.object.data_map.ttx.has_content}
