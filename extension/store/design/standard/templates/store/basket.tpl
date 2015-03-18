@@ -64,11 +64,11 @@
             <th>&nbsp;</th>
         </tr>
         {foreach $basket.items as $item}
-            {set $itemObject = fetch( 'content', 'node', hash( 'node_id', $item.node_id ) )}
             <tr>
                 <td>
+                    {set $itemObject = fetch( 'content', 'node', hash( 'node_id', $item.node_id ) )}
                     <input type="hidden" name="ProductItemIDList[]" value="{$item.id}" />
-                    <div><a href={$itemObject.url_alias|ezurl}>{$itemObject.data_map.name.content|wash}</a></div>
+                    <div><a {if $itemObject.object.class_identifier|eq('material')}href={$itemObject.parent.url_alias|ezurl}{else}href={$itemObject.url_alias|ezurl}{/if}>{$itemObject.data_map.name.content|wash}</a></div>
                     {foreach $item.item_object.option_list as $option}
                         {$option.value}{delimiter}&nbsp;|&nbsp;{/delimiter}
                     {/foreach}

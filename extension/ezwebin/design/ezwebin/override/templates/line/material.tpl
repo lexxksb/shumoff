@@ -11,13 +11,13 @@
         <div class="count">
             <div class="text">Количество:</div>
             <div class="input-group">
-                <span class="input-group-addon">-</span>
-                <input type="text" class="form-control" value="1" aria-label="Amount (to the nearest dollar)">
-                <span class="input-group-addon">+</span>
+                <span class="input-group-addon" data-type="dec" data-id="{$node.node_id}">-</span>
+                <input type="text" class="form-control" id="count{$node.node_id}" value="1" aria-label="">
+                <span class="input-group-addon" data-type="inc" data-id="{$node.node_id}">+</span>
             </div>
         </div>
         <div class="add">
-            <button class="btn btn-shumoff toBasket cboxElement"><div class="icon-basket"></div>Добавить в корзину</button>
+            <button data-nodeid="{$node.node_id}" data-objectid="{$node.object.id}" class="btn btn-shumoff toBasket cboxElement"><div class="icon-basket"></div>Добавить в корзину</button>
         </div>
     {else}
         <div class="add">

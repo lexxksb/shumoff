@@ -20,57 +20,30 @@
 
 {if $node.object.data_map.ttx.has_content}
     <div class="ttxTitle">Технические характеристики</div>
-    <table class="table ttx">
-        <tbody><tr>
-            <th>Характеристики</th>
-            <th>М1.2</th>
-            <th>М1.2</th>
-            <th>М1.2</th>
-            <th>М1.2</th>
-        </tr>
-        <tr>
-            <td>Толщина материала</td>
-            <td>М1.2</td>
-            <td>М1.2</td>
-            <td>М1.2</td>
-            <td>М1.2</td>
-        </tr>
-        <tr>
-            <td>Масса упаковки</td>
-            <td>М1.2</td>
-            <td>М1.2</td>
-            <td>М1.2</td>
-            <td>М1.2</td>
-        </tr>
-        </tbody></table>
-    {attribute_view_gui attribute=$node.object.data_map.ttx}
+    <div class="ttx">{attribute_view_gui attribute=$node.object.data_map.ttx}</div>
 {/if}
 
-
+{def $othermaterials = $node.object.data_map.othermaterials.content.relation_list
+     $omitems = array()}
+{if $othermaterials|count()}
 <div class="materialSoputka">
-    <div class="title">Другие вибропоглощающие материалы</div>
-
+    <div class="title">Другие {$node.parent.name|downcase()}</div>
     <ul class="flexBlock materials">
-        <li>
-            <div class="block">
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#"><img class="media-object" src="http://placehold.it/110x110" alt="..."></a>
-                    </div>
-                    <div class="media-body">
-                        <a href="" class="media-heading">Комплект по шумоизоляции дверей</a>
-                        <p>Материал на основе неотверждаемой мастики с лицевым покрытием в виде фольги.</p>
-                        <div class="priceBlock"><span class="from">от</span>&nbsp;1 360&nbsp;<span class="icon-ruble"></span><span class="from">/лист</span></div>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="block">
-                <a href="">Комплект по шумоизоляции дверей</a>
-                <p>Вибродемпфирующий, снижающий шум металлических и пластиковых панелей от вибрации.</p>
-                <div class="priceBlock"><span class="from">от</span>&nbsp;1 360&nbsp;<span class="icon-ruble"></span></div>
-            </div>
-        </li>
+        {foreach $othermaterials as $mat}
+            {set $omitems = fetch( 'content', 'node', hash( 'node_id', $mat.node_id ) )}
+            <li>{node_view_gui view='line' content_node=$omitems}</li>
+        {/foreach}
     </ul>
+</div>
+{/if}
+{undef $othermaterials $omitems}
+
+<div style="display: none">
+    <div id='inline_content' class="basketAddBlock">
+        <div class="title">Товар добавлен в корзину</div>
+        <div>
+            <a href="#" class="colorboxClose">Продолжить покупки</a>
+            <a href={"/store/basket/"|ezurl}><button class="btn btn-shumoff" type="submit">Оформить заказ</button></a>
+        </div>
+    </div>
 </div>

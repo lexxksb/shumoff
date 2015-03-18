@@ -23,23 +23,28 @@ $(document).ready(function(){
     $(".toBasket").on('click', function(e){
         e.preventDefault();
 
-        var cb = $("#basketText").data("count"),
-            toPost = new Object();
+        var toPost = new Object(),
+            button = $(this);
 
-        toPost.ContentNodeID = priceObject.data("nodeid");
-        toPost.ContentObjectID = priceObject.data("objectid");
+        toPost.ContentNodeID = button.data("nodeid");
+        toPost.ContentObjectID = button.data("objectid");
         toPost.ViewMode = "full";
         toPost.ActionAddToBasket = "";
 
-        if(window.kitOptions !== undefined) {
+        var quantity = $("#count"+button.data("nodeid"));
+        if(quantity.length){
+            toPost.Quantity = quantity.val();
+        }
+
+        if(window.kitOptions !== undefined && button.data("optionid")) {
             var opt = new Object();
-            opt[priceObject.data("optionid")] = ezOptionValue;
+            opt[button.data("optionid")] = ezOptionValue;
             toPost.eZOption = opt;
         }
 
         $.post( "/store/action", toPost, function() {
-        })
-        .done(function(result) {
+
+        }).done(function(result) {
             $("#basketText").text(result.count);
             $.colorbox({inline:true, href:"#inline_content", width:"40%", opacity: "0.5"});
         });
@@ -110,25 +115,25 @@ $(document).ready(function(){
         $("#pay input").on('click', function() {
             $("[name='payment']").val($(this).val());
         });
-
-        $(".input-group-addon").on('click', function() {
-            var elem = $(this),
-                input = $("#count" + elem.data("id"));
-            if(elem.data("type") == "inc"){
-                input.val(function(i, oldval) {
-                    return ++oldval;
-                });
-            }else{
-                input.val(function(i, oldval) {
-                    return oldval>0 ? --oldval : 0;
-                });
-            }
-        });
-
         $(".remove").on('click', function(e) {
             $(this).next().removeAttr("disabled");
         });
     }
+
+    /* Inc|Dec в поле количества */
+    $(".input-group-addon").on('click', function() {
+        var elem = $(this),
+            input = $("#count" + elem.data("id"));
+        if(elem.data("type") == "inc"){
+            input.val(function(i, oldval) {
+                return ++oldval;
+            });
+        }else{
+            input.val(function(i, oldval) {
+                return oldval>0 ? --oldval : 0;
+            });
+        }
+    });
 
 });
 

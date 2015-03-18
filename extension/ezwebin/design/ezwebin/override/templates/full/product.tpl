@@ -86,13 +86,11 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="priceBlock">
-                    <span id="price" data-price="{$node.object.data_map.price.content.price}" data-nodeid="{$node.node_id}" data-objectid="{$node.object.id}" data-optionid="{$node.object.data_map.options.id}">
-                        {$node.object.data_map.price.content.price|l10n( 'number' )}
-                    </span>&nbsp;<span class="icon-ruble"></span>
+                    <span id="price" data-price="{$node.object.data_map.price.content.price}">{$node.object.data_map.price.content.price|l10n( 'number' )}</span>&nbsp;<span class="icon-ruble"></span>
                 </div>
             </div>
             <div class="col-md-6">
-                <button class="btn btn-shumoff toBasket cboxElement" name="ActionAddToBasket"><div class="icon-basket"></div>Добавить в корзину</button>
+                <button data-nodeid="{$node.node_id}" data-objectid="{$node.object.id}" data-optionid="{$node.object.data_map.options.id}" class="btn btn-shumoff toBasket cboxElement" name="ActionAddToBasket"><div class="icon-basket"></div>Добавить в корзину</button>
             </div>
         </div>
         <div class="ttxKit">
@@ -101,39 +99,50 @@
     </div>
 </div>
 
-<div class="soputka">
+{def $othermaterials = $node.object.data_map.notforgetbuy.content.relation_list
+     $omitems = array()}
+{if $othermaterials|count()}
+<div class="materialSoputka {*soputka*}">
     <div class="title">Не забудьте купить</div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <a href=""><img class="media-object" src="http://placehold.it/110x110" alt="..."></a>
-                    </a>
-                </div>
-                <div class="media-body">
-                    <div class="media-heading"><a href="">Инструменты</a></div>
-                    <p>Съемники в наборах и отдельно. Прикаточные валики и другие полезные штуки для монтажа шумоизоляции.</p>
-                    <div class="priceBlock"><span class="from">от</span>&nbsp;95 <span class="icon-ruble"></span><span class="from">/лист</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <a href=""><img class="media-object" src="http://placehold.it/110x110" alt="..."></a>
-                    </a>
-                </div>
-                <div class="media-body">
-                    <div class="media-heading"><a href="">Инструменты</a></div>
-                    <p>Съемники в наборах и отдельно. Прикаточные валики и другие полезные штуки для монтажа шумоизоляции.</p>
-                    <div class="priceBlock"><span class="from">от</span>&nbsp;95 <span class="icon-ruble"></span><span class="from">/лист</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <ul class="flexBlock materials">
+        {foreach $othermaterials as $mat}
+            {set $omitems = fetch( 'content', 'node', hash( 'node_id', $mat.node_id ) )}
+            <li>{node_view_gui view='line' content_node=$omitems}</li>
+        {/foreach}
+    </ul>
+    {*<div class="row">*}
+        {*<div class="col-md-6">*}
+            {*<div class="media">*}
+                {*<div class="media-left">*}
+                    {*<a href="#">*}
+                        {*<a href=""><img class="media-object" src="http://placehold.it/110x110" alt="..."></a>*}
+                    {*</a>*}
+                {*</div>*}
+                {*<div class="media-body">*}
+                    {*<div class="media-heading"><a href="">Инструменты</a></div>*}
+                    {*<p>Съемники в наборах и отдельно. Прикаточные валики и другие полезные штуки для монтажа шумоизоляции.</p>*}
+                    {*<div class="priceBlock"><span class="from">от</span>&nbsp;95 <span class="icon-ruble"></span><span class="from">/лист</span></div>*}
+                {*</div>*}
+            {*</div>*}
+        {*</div>*}
+        {*<div class="col-md-6">*}
+            {*<div class="media">*}
+                {*<div class="media-left">*}
+                    {*<a href="#">*}
+                        {*<a href=""><img class="media-object" src="http://placehold.it/110x110" alt="..."></a>*}
+                    {*</a>*}
+                {*</div>*}
+                {*<div class="media-body">*}
+                    {*<div class="media-heading"><a href="">Инструменты</a></div>*}
+                    {*<p>Съемники в наборах и отдельно. Прикаточные валики и другие полезные штуки для монтажа шумоизоляции.</p>*}
+                    {*<div class="priceBlock"><span class="from">от</span>&nbsp;95 <span class="icon-ruble"></span><span class="from">/лист</span></div>*}
+                {*</div>*}
+            {*</div>*}
+        {*</div>*}
+    {*</div>*}
 </div>
+{/if}
+{undef $othermaterials $omitems}
 
 <div style="display: none">
     <div id='inline_content' class="basketAddBlock">
