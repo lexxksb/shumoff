@@ -149,6 +149,12 @@ MatchFile=full/typematerial.tpl
 Subdir=templates
 Match[class_identifier]=typematerial
 
+[full_partmaterial]
+Source=node/view/full.tpl
+MatchFile=full/partmaterial.tpl
+Subdir=templates
+Match[class_identifier]=partmaterials
+
 [line_material]
 Source=node/view/line.tpl
 MatchFile=line/material.tpl
