@@ -26,5 +26,3 @@ if ($http->hasPostVariable("ContentObjectID")) {
         $module->setRedirectURI($shopModule->redirectURI());
     }
 }
-
-?>

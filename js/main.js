@@ -39,8 +39,8 @@ $(document).ready(function(){
 
         $.post( "/store/action", toPost, function() {
         })
-        .done(function() {
-            $("#basketText").data("count", ++cb).text(cb);
+        .done(function(result) {
+            $("#basketText").text(result.count);
             $.colorbox({inline:true, href:"#inline_content", width:"40%", opacity: "0.5"});
         });
 

@@ -40,8 +40,15 @@ $operationResult = eZOperationHandler::execute( 'shop', 'addtobasket', array( 'b
                                                                               'quantity' => $quantity,
                                                                               'option_list' => $OptionList ) );
 
+
 switch( $operationResult['status'] )
 {
+    case eZModuleOperationInfo::STATUS_CONTINUE:{
+        $basket = eZBasket::currentBasket();
+        header("Content-Type:text/json");
+        echo json_encode(["count" => count($basket->items())]);
+        eZExecution::cleanExit();
+    }
     case eZModuleOperationInfo::STATUS_HALTED:
     {
         if ( isset( $operationResult['redirect_url'] ) )
@@ -107,11 +114,9 @@ switch( $operationResult['status'] )
 
 }
 
-
 $ini = eZINI::instance();
 if ( $ini->variable( 'ShopSettings', 'RedirectAfterAddToBasket' ) == 'reload' )
     $module->redirectTo( $http->sessionVariable( "FromPage" ) );
 else
     $module->redirectTo( "/shop/basket/" );
 
-?>
