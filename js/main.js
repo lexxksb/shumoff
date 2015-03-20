@@ -90,7 +90,7 @@ $(document).ready(function(){
                     var coords = res.geoObjects.get(0).geometry.getCoordinates();
                     var map = new ymaps.Map("map", {
                         center: coords,
-                        zoom: 15
+                        zoom: address.data("zoom") || 15
                     });
                     var office = new ymaps.GeoObject({
                         geometry: {

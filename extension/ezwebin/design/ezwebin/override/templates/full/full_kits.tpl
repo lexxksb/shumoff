@@ -1,6 +1,8 @@
 {set scope=global persistent_variable=hash(
     'meta_description', $node.object.data_map.meta_description.content|wash,
-    'site_title', $node.object.data_map.meta_title.content|wash
+    'site_title', $node.object.data_map.meta_title.content|wash,
+    'contextBlock1', true(),
+    'contextBlock2', false()
 )}
 <h1>{$node.data_map.name.content|wash}</h1>
 

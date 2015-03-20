@@ -7,7 +7,17 @@
 <head>
     {def    $pagedata         = ezpagedata()
             $pagedesign       = $pagedata.template_look
-            $current_node_id  = $pagedata.node_id}
+            $current_node_id  = $pagedata.node_id
+            $helpNodes        = fetch( 'content', 'list', hash( 'parent_node_id', 59 ) )
+            $contacts         = fetch( 'content', 'node', hash( 'node_id', 110 ) )
+            $himselfNodes     = fetch( 'content', 'list', hash( 'parent_node_id', 72,
+                                                            'limit', 3) )
+            $reviewNodes      = fetch( 'content', 'list', hash(
+                                                        'parent_node_id', 70,
+                                                        'limit', 1,
+                                                        'sort_by', array( 'attribute', false(), 376 )
+                                                        ) )
+    }
 
     {include uri='design:page_head.tpl'}
 
@@ -25,11 +35,11 @@
 
     <header>
         <div class="head">
-            <div class="logo"><a href="/"><div class="icon-logo"></div></a></div>
+            <div class="logo"><a href={"/"|ezurl}><div class="icon-logo"></div></a></div>
             <div class="slogan">Технологии акустического комфорта</div>
             <div class="pull-right">
                 <div class="tel">{$pagedesign.data_map.tel.content|wash}</div>
-                <a href="">{$pagedesign.data_map.addres.content|wash}</a>
+                <a href={$contacts.url_alias|ezurl}>{$pagedesign.data_map.addres.content|wash}</a>
             </div>
         </div>
         {include uri='design:page_topmenu.tpl'}
@@ -64,6 +74,8 @@
         {/if}
     </div>
 
+    {include uri='design:context.tpl'}
+
     <footer>
         <div class="about">
             <div class="title">О нас</div>
@@ -71,11 +83,9 @@
         </div>
         <div class="help">
             <div class="title">Помощь</div>
-            {def $nodes = fetch( 'content', 'list', hash( 'parent_node_id', 59 ) )}
-            {foreach $nodes as $node}
+            {foreach $helpNodes as $node}
                 <div><a href={$node.url_alias|ezurl} title="{$node.name|wash}">{$node.name|wash}</a></div>
             {/foreach}
-            {undef $nodes}
         </div>
         <div class="contacts">
             <div class="title">Контакты</div>
@@ -98,3 +108,4 @@
 <script src="/js/production.min.js"></script>
 </body>
 </html>
+{undef $helpNodes}

@@ -4,44 +4,69 @@
     'metaheader', $node.object.data_map.meta_header.content|wash,
     'textheader', $node.object.data_map.textheader
 )}
+{def
+    $himselfNodes = fetch( 'content', 'list', hash( 'parent_node_id', 72,
+'limit', 3) )
+    $reviewNodes = fetch( 'content', 'list', hash(
+            'parent_node_id', 70,
+            'limit', 1,
+            'sort_by', array( 'attribute', false(), 376 )
+        ) )
+    $newsNodes = fetch( 'content', 'list', hash(
+            'parent_node_id', 73,
+            'limit', 1,
+            'sort_by', array( 'attribute', false(), 444 )
+    ) )
+    $contacts = fetch( 'content', 'node', hash( 'node_id', 110 ) )
+}
 <div class="seo">
     {attribute_view_gui attribute=$node.object.data_map.seotext}
 </div>
 
 <ul class="flexBlock info">
     <li>
+        {if $himselfNodes|count}
         <div class="articles">
             <div class="legend"><div class="icon-himself"></div>Сделай сам</div>
-            <div class="list"><div class="icon-liDot"></div><a href="">Как самому сделать шумоизоляцию крыши</a></div>
-            <div class="list"><div class="icon-liDot"></div><a href="">Виды шумоизоляций и их применение</a></div>
-            <div class="list"><div class="icon-liDot"></div><a href="">Особености шумоизоляции дверей</a></div>
-            <div class="all"><a href="">Все инструкции</a></div>
+            {foreach $himselfNodes as $node}
+                <div class="list"><div class="icon-liDot"></div><a href={$node.url_alias|ezurl}>{$node.data_map.name.content|wash}</a></div>
+            {/foreach}
+            <div class="all"><a href={$himselfNodes[0].parent.url_alias|ezurl}>Все инструкции</a></div>
         </div>
+        {/if}
     </li>
     <li>
+        {if $newsNodes|count()}
         <div class="news">
-            <div class="text"><a href="">25 мая магазин Шумофф работает с 11-00 до 17-00. Приезжайте! Мы вас ждем!</a></div>
-            <div class="all"><a href="#">Все новости и акции</a></div>
+            <div class="text"><a href={$newsNodes[0].url_alias|ezurl}>{$newsNodes[0].data_map.name.content|wash}</a></div>
+            <div class="all"><a href={$newsNodes[0].parent.url_alias|ezurl}>Все новости и акции</a></div>
         </div>
+        {/if}
     </li>
     <li>
+        {if $reviewNodes|count()}
         <div class="rewiew">
-            <div class="author">Василий. Асбест:</div>
-            <p>В 2012 г приобрёл в магазине "Шумофф" комплект шумоизоляции дверей. Теперь езжу спокойно, без лишних звуков...</p>
-            <div class="all"><a class="all" href="#">Все отзывы</a></div>
+            <div class="author">{$reviewNodes[0].data_map.name.content|wash}:</div>
+            {attribute_view_gui attribute=$reviewNodes[0].data_map.review}
+            <div class="all"><a class="all" href={$reviewNodes[0].parent.url_alias|ezurl}>Все отзывы</a></div>
         </div>
+        {/if}
     </li>
 </ul>
 
 <div class="instCenter">
-    <div class="t1">Установочный центр на Попова, 6</div>
+    <div class="t1"><a href={$contacts.url_alias|ezurl}>{$contacts.data_map.headercenter.content|wash}</a></div>
     <div class="media">
         <div class="media-left media-middle">
-            <a href="#"><img class="media-object" src="http://placehold.it/140x140" alt="..."></a>
+
+            {attribute_view_gui image_class=inctCenterMainPage css_class="media-object" href=$contacts.url_alias|ezurl attribute=$contacts.data_map.photo}
+
+            {*<a href={$contacts.url_alias|ezurl}>*}
+                {*<img class="media-object" src="http://placehold.it/140x140" alt="...">*}
+            {*</a>*}
         </div>
         <div class="media-body">
-            <p>Шумоизоляция в последнее время становится все более распространенным явлением. Но в ее установке так много тонкостей, что результат напрямую зависит от качества материала и квалификации мастеров.</p>
-            <p>Мы стараемся сделать вашу езду на автомобиле как можно более комфортной. Мы ценим ваше время и деньги, поэтому заказ будет выполнен в короткие сроки за приемлемые цены.</p>
+            {attribute_view_gui attribute=$contacts.data_map.opisanie_ustanovochnogo_centra}
         </div>
     </div>
 </div>

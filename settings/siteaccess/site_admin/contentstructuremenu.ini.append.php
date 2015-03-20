@@ -11,4 +11,5 @@ ShowClasses[]=product
 ShowClasses[]=partmaterials
 ShowClasses[]=typematerial
 ShowClasses[]=material
+ShowClasses[]=contacts
 */

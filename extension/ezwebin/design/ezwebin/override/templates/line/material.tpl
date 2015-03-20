@@ -1,7 +1,7 @@
 <div class="block">
     <div class="title">{$node.data_map.name.content|wash}</div>
     {if $node.object.data_map.image.has_content}
-            {attribute_view_gui css_class="img-responsive" attribute=$node.object.data_map.image image_class=material}
+        {attribute_view_gui css_class="img-responsive" attribute=$node.object.data_map.image image_class=material}
     {/if}
     {if $node.object.data_map.price.content.price|gt(0)}
         <div class="price">

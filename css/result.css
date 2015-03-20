@@ -308,8 +308,10 @@ header .navbar .navbar-header .basket .icon-basket {
 .content .instCenter {
   margin: 20px 0 0 0;
 }
-.content .instCenter .t1 {
+.content .instCenter .t1 a,
+.content .instCenter .t1 a:hover {
   font-size: 24px;
+  color: #000000;
 }
 .content .instCenter .media-object {
   margin-right: 40px;
@@ -866,7 +868,7 @@ header .navbar .navbar-header .basket .icon-basket {
   margin: 40px 0 35px 0;
 }
 .content .review .media-left {
-  min-width: 80px;
+  min-width: 100px;
 }
 .content .review .media-body {
   font-size: 14px;

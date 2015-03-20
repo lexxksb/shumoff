@@ -13,6 +13,11 @@ AliasList[]=onenews
 AliasList[]=kit
 AliasList[]=typematerial
 AliasList[]=material
+AliasList[]=inctCenterMainPage
+
+[inctCenterMainPage]
+Reference=
+Filters[]=geometry/thumbnailize=140;140
 
 [material]
 Reference=
