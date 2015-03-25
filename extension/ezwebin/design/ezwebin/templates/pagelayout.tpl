@@ -17,6 +17,7 @@
                                                         'limit', 1,
                                                         'sort_by', array( 'attribute', false(), 376 )
                                                         ) )
+            $instCenter       = fetch( 'content', 'node', hash( 'node_id', 138 ) )
     }
 
     {include uri='design:page_head.tpl'}
@@ -56,7 +57,7 @@
             {def $subnodes = fetch( 'content', 'list', hash(
                     'parent_node_id', $pagedata.path_array[1].node_id,
                     'class_filter_type', 'include',
-                    'class_filter_array', array("folder", "contacts")
+                    'class_filter_array', array("folder", "contacts", "instcenter")
                 ) )}
             {if $subnodes|count}
                 <div class="row">

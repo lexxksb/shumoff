@@ -3,8 +3,10 @@ $(document).ready(function(){
     if(window.kitOptions !== undefined){
 
         var priceObject     = $("#price");
+        var priceObjectParent = $("#price").parent();
         var price           = priceObject.data("price") || 0;
         var ezOptionValue   = 0;
+        var basketButton    = $(".toBasket");
 
         change();
 
@@ -16,7 +18,16 @@ $(document).ready(function(){
             var first   = $('input[name="first"]:checked').val();
             var second  = $('input[name="second"]:checked').val();
             ezOptionValue = kitOptions[first][second][0];
-            priceObject.html( accounting.formatMoney(price + kitOptions[first][second][1], "", 0, " ", "") );
+            var summPrice = price + kitOptions[first][second][1];
+
+            if(summPrice > 0) {
+                priceObjectParent.show();
+                basketButton.removeAttr("disabled");
+                priceObject.html(accounting.formatMoney(price + kitOptions[first][second][1], "", 0, " ", ""));
+            }else{
+                priceObjectParent.hide();
+                basketButton.attr("disabled", "disabled");
+            }
         }
     }
 
@@ -36,7 +47,7 @@ $(document).ready(function(){
             toPost.Quantity = quantity.val();
         }
 
-        if(window.kitOptions !== undefined && button.data("optionid")) {
+        if(window.kitOptions !== undefined && ezOptionValue !== undefined && button.data("optionid")) {
             var opt = new Object();
             opt[button.data("optionid")] = ezOptionValue;
             toPost.eZOption = opt;

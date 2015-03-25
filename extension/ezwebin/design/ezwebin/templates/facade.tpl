@@ -13,23 +13,23 @@
             <div class="relative">
                 <div class="roof">
                     <a href={$roof.url_alias|ezurl}>{$roof.data_map.mainpagetext.content|wash}</a>
-                    <div>от <span class="price">{$roof.data_map.price.content.price|l10n("currency")}&nbsp;<span class="icon-ruble"></span></span></div>
+                    {if $roof.data_map.price.content.price}<div>от <span class="price">{$roof.data_map.price.content.price|l10n("currency")}&nbsp;<span class="icon-ruble"></span></span></div>{/if}
                 </div>
                 <div class="doors">
                     <a href={$doors.url_alias|ezurl}>{$doors.data_map.mainpagetext.content|wash}</a>
-                    <div>от <span class="price">{$doors.data_map.price.content.price|l10n("currency")}&nbsp;<span class="icon-ruble"></span></span></div>
+                    {if $doors.data_map.price.content.price}<div>от <span class="price">{$doors.data_map.price.content.price|l10n("currency")}&nbsp;<span class="icon-ruble"></span></span></div>{/if}
                 </div>
                 <div class="engine">
                     <a href={$engine.url_alias|ezurl}>{$engine.data_map.mainpagetext.content|wash}</a>
-                    <div>от <span class="price">{$engine.data_map.price.content.price|l10n("currency")}&nbsp;<span class="icon-ruble"></span></span></div>
+                    {if $engine.data_map.price.content.price}<div>от <span class="price">{$engine.data_map.price.content.price|l10n("currency")}&nbsp;<span class="icon-ruble"></span></span></div>{/if}
                 </div>
                 <div class="hood">
                     <a href={$hood.url_alias|ezurl}>{$hood.data_map.mainpagetext.content|wash}</a>
-                    <div>от <span class="price">{$hood.data_map.price.content.price|l10n("currency")}&nbsp;<span class="icon-ruble"></span></span></div>
+                    {if $hood.data_map.price.content.price}<div>от <span class="price">{$hood.data_map.price.content.price|l10n("currency")}&nbsp;<span class="icon-ruble"></span></span></div>{/if}
                 </div>
                 <div class="floor">
                     <a href={$flour.url_alias|ezurl}>{$flour.data_map.mainpagetext.content|wash}</a>
-                    <div>от <span class="price">{$flour.data_map.price.content.price|l10n("currency")}&nbsp;<span class="icon-ruble"></span></span></div>
+                    {if $flour.data_map.price.content.price}<div>от <span class="price">{$flour.data_map.price.content.price|l10n("currency")}&nbsp;<span class="icon-ruble"></span></span></div>{/if}
                 </div>
             </div>
         </div>

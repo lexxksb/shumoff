@@ -72,7 +72,7 @@
                     <div class="border">
                         <a class="title" href={$kit.url_alias|ezurl}>{$kit.data_map.name.content|wash}</a>
                         {attribute_view_gui attribute=$kit.data_map.short_description}
-                        <div class="priceBlock"><span class="from">от</span>&nbsp;{$kit.data_map.price.content.price|l10n('currency')}&nbsp;<span class="icon-ruble"></span></div>
+                        {if $kit.data_map.price.content.price}<div class="priceBlock"><span class="from">от</span>&nbsp;{$kit.data_map.price.content.price|l10n('currency')}&nbsp;<span class="icon-ruble"></span></div>{/if}
                     </div>
                     {undef $kit}
                 </div>
@@ -80,14 +80,14 @@
                     <div class="title">Доверьте профессионалам</div>
                     <div class="border media">
                         <div class="media-left">
-                            {if $contacts.object.data_map.address.has_content}
+                            {if $instCenter.object.data_map.mapaddress.has_content}
                                 <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-                                <div class="map" id="map" style="width: 280px;height: 220px;" data-address="{$contacts.data_map.address.content|wash}" data-zoom="14"></div>
+                                <div class="map" id="map" style="width: 280px;height: 220px;" data-address="{$instCenter.data_map.mapaddress.content|wash}" data-zoom="14"></div>
                             {/if}
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading"><a href={$contacts.url_alias|ezurl}>{$contacts.data_map.headercenter.content|wash}</a></h4>
-                            {attribute_view_gui attribute=$contacts.data_map.textcenter}
+                            <h4 class="media-heading"><a href={$instCenter.url_alias|ezurl}>{$instCenter.data_map.name.content|wash}</a></h4>
+                            {attribute_view_gui attribute=$instCenter.data_map.textprof}
                         </div>
                     </div>
                 </div>

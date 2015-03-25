@@ -3,7 +3,10 @@
     {if $node.object.data_map.image.has_content}
         {attribute_view_gui css_class="img-responsive" attribute=$node.object.data_map.image image_class=material}
     {/if}
-    {if $node.object.data_map.price.content.price|gt(0)}
+    {if and(
+        $node.object.data_map.price.content.price|gt(0),
+        $node.object.data_map.notavailable.content|not
+    )}
         <div class="price">
             <div class="text">Цена:</div>
             <div class="priceBlock">{$node.object.data_map.price.content.price|l10n( 'currency' )} <span class="icon-ruble"></span>{if $node.object.data_map.unit.has_content}<span class="from">/{$node.object.data_map.unit.content}</span>{/if}</div>

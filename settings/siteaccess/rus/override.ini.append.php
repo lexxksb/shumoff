@@ -155,6 +155,12 @@ MatchFile=full/partmaterial.tpl
 Subdir=templates
 Match[class_identifier]=partmaterials
 
+[full_instcenter]
+Source=node/view/full.tpl
+MatchFile=full/instcenter.tpl
+Subdir=templates
+Match[class_identifier]=instcenter
+
 [line_material]
 Source=node/view/line.tpl
 MatchFile=line/material.tpl

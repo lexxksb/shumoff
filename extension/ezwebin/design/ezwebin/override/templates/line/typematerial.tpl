@@ -10,7 +10,10 @@
             {attribute_view_gui attribute=$node.object.data_map.short_description}
             {def $children = fetch_alias( 'children', hash( 'parent_node_id', $node.node_id,
                                                 'sort_by', array( 'attribute', true(), 480 ),
-                                                'attribute_filter', array(array( 'material/price', '>', '0' )),
+                                                'attribute_filter', array(
+                                                    array( 'material/price', '>', '0' ),
+                                                    array( 'material/notavailable', '!=', '1' )
+                                                ),
                                                 'class_filter_type', 'include',
                                                 'class_filter_array', array('material'),
                                                 'limit', 1 ) ) }

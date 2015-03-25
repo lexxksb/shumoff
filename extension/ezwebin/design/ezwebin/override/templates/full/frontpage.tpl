@@ -17,7 +17,7 @@
             'limit', 1,
             'sort_by', array( 'attribute', false(), 444 )
     ) )
-    $contacts = fetch( 'content', 'node', hash( 'node_id', 110 ) )
+    $instCenter = fetch( 'content', 'node', hash( 'node_id', 138 ) )
 }
 <div class="seo">
     {attribute_view_gui attribute=$node.object.data_map.seotext}
@@ -55,18 +55,13 @@
 </ul>
 
 <div class="instCenter">
-    <div class="t1"><a href={$contacts.url_alias|ezurl}>{$contacts.data_map.headercenter.content|wash}</a></div>
+    <div class="t1"><a href={$instCenter.url_alias|ezurl}>{$instCenter.data_map.name.content|wash}</a></div>
     <div class="media">
         <div class="media-left media-middle">
-
-            {attribute_view_gui image_class=inctCenterMainPage css_class="media-object" href=$contacts.url_alias|ezurl attribute=$contacts.data_map.photo}
-
-            {*<a href={$contacts.url_alias|ezurl}>*}
-                {*<img class="media-object" src="http://placehold.it/140x140" alt="...">*}
-            {*</a>*}
+            {attribute_view_gui image_class=inctCenterMainPage css_class="media-object" href=$instCenter.url_alias|ezurl attribute=$instCenter.data_map.image}
         </div>
         <div class="media-body">
-            {attribute_view_gui attribute=$contacts.data_map.opisanie_ustanovochnogo_centra}
+            {attribute_view_gui attribute=$instCenter.data_map.short_description}
         </div>
     </div>
 </div>

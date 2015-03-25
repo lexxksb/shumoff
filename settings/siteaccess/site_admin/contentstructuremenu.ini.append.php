@@ -12,4 +12,5 @@ ShowClasses[]=partmaterials
 ShowClasses[]=typematerial
 ShowClasses[]=material
 ShowClasses[]=contacts
+ShowClasses[]=instcenter
 */
