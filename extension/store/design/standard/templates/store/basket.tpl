@@ -12,9 +12,9 @@
 
 {if $basket.items|count}
 
-    {def $itemObject     = array()
+    {def $itemObject    = array()
         $shippingType   = ezini( 'Shipping', 'type', 'store.ini' )
-        $ship           = cond(ezhttp( "shipping", "cookie" ), ezhttp( "shipping", "cookie" ), ezini( 'Shipping', 'default', 'store.ini' ))
+        $ship           = cond(is_set(ezhttp( "shipping", "cookie" )), ezhttp( "shipping", "cookie" ), ezini( 'Shipping', 'default', 'store.ini' ))
         $paydef         = cond($payment, $payment, ezini( 'Payment', 'default', 'store.ini' ))
         $paymentType    = ezini( 'Payment', 'type', 'store.ini' )
     }
@@ -131,21 +131,28 @@
                 </div>
                 <div class="col-md-4" id="pay">
                     <div class="rowTitle">Оплата</div>
-                    {def $ident = "" $desc = ""}
-                    {foreach $paymentType as $type}
+                    {def $ident = "" $desc = "" $active = 0
+                         $access = hash( "courier", array(0),
+                                        "selfExport", array(0,1,2),
+                                        "transportCompany", array(2))
+                    }
+                    {foreach $paymentType as $key => $type}
                         {set $ident = concat($type,'Info')
                              $desc = ezini($ident, 'description', 'store.ini' )}
-                        <div class="radio">
-                            <label for="{$type}">
-                                <input type="radio" {if $paydef|eq($type)} checked="checked" {/if} name="_payment" id="{$type}" value="{$type}">
-                                <div class="name">{ezini( $ident, 'name', 'store.ini' )}</div>
-                                {if $desc}
-                                    <div class="icon-cHelp icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="{$desc}"></div>
-                                {/if}
-                            </label>
-                        </div>
+                        {if $access[$ship]|contains($key)}
+                            <div class="radio">
+                                <label for="{$type}">
+                                    <input type="radio" {if $active|not}{set $paydef = $type} checked="checked" {/if} name="_payment" id="{$type}" value="{$type}" >
+                                    <div class="name">{ezini( $ident, 'name', 'store.ini' )}</div>
+                                    {if $desc}
+                                        <div class="icon-cHelp icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="{$desc}"></div>
+                                    {/if}
+                                </label>
+                            </div>
+                            {set $active = $active|inc}
+                        {/if}
                     {/foreach}
-                    {undef $ident $desc}
+                    {undef $ident $desc $access $active}
                 </div>
                 <div class="col-md-4"></div>
             </form>
@@ -179,12 +186,12 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Город *:</label>
-                        <input type="text" name="Place" class="form-control" placeholder="г. Екатеринбург" value="{$place|wash}" required="required" >
+                        <label>Город:</label>
+                        <input type="text" name="Place" class="form-control" placeholder="г. Екатеринбург" value="{$place|wash}" >
                     </div>
                     <div class="form-group">
-                        <label>Адрес доставки *:</label>
-                        <input type="text" name="Street1" class="form-control" placeholder="ул. Первомайская 5-300" value="{$street1|wash}" required="required" >
+                        <label>Адрес доставки:</label>
+                        <input type="text" name="Street1" class="form-control" placeholder="ул. Первомайская 5-300" value="{$street1|wash}" >
                     </div>
                     <div class="form-group">
                         <label>Комментарий к заказу:</label>

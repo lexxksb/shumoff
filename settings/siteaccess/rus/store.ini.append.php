@@ -1,19 +1,25 @@
 <?php /* #?ini charset="utf-8"?
 
 [General]
-freeShipSumm=1500
+freeShipSumm=2000
 
 [selfExportInfo]
 description=Cамовывоз c нашего офиса в Екатеринбурге
 cost=0
 
 [courierInfo]
-description=Стоимость доставки 200 руб. При заказе на сумму от 1500 рублей доставка бесплатна в пределах Екатеринбурга (ЕКАД)
-cost=200
+description=Стоимость доставки 500 руб. При заказе на сумму от 2000 рублей доставка бесплатна в пределах Екатеринбурга (ЕКАД)
+cost=500
 
 [cashInfo]
 description=
 
 [cashlessInfo]
-description=Безналичный перевод описание
+description=Счет выставляется после покупки
+
+[transportCompanyInfo]
+description=Мы сотрудничаем с ТК Грузовозов, ТК Кит, ТК Пегас
+
+[cashcardInfo]
+description=Наш терминал находится в офисе
 */ ?>

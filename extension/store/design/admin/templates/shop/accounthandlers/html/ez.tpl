@@ -19,44 +19,32 @@
 <legend>Платежная информация</legend>
 <table class="list" cellspacing="0">
 <tr>
-    <td>{"First name"|i18n("design/ezwebin/shop/userregister")}</td>
+    <td>Фио</td>
     <td>{$order.account_information.first_name}</td>
-</tr>
-<tr>
-    <td>{"Last name"|i18n("design/ezwebin/shop/userregister")}</td>
-    <td>{$order.account_information.last_name}</td>
 </tr>
 <tr>
     <td>Телефон</td>
     <td>{$order.account_information.phone}</td>
 </tr>
 <tr>
-    <td>{"Street"|i18n("design/ezwebin/shop/userregister")}</td>
-    <td>{$order.account_information.street1}</td>
-</tr>
-<tr>
     <td>Город</td>
     <td>{$order.account_information.place}</td>
 </tr>
 <tr>
-    <td>Область/Край/АО/Республика</td>
-    <td>{$order.account_information.state}</td>
-</tr>
-<tr>
-    <td>Индекс</td>
-    <td>{$order.account_information.zip}</td>
+    <td>{"Street"|i18n("design/ezwebin/shop/userregister")}</td>
+    <td>{$order.account_information.street1}</td>
 </tr>
 <tr>
     <td>Доставка</td>
     <td>
-        {def $ident = concat($order.account_information.shipping,'Info')}
-        {ezini( $ident, 'name', 'store.ini' )}
+        {ezini( concat($order.account_information.shipping,'Info'), 'name', 'store.ini' )}
     </td>
 </tr>
 <tr>
     <td>Оплата</td>
-    <td>{def $ident = concat($order.account_information.payment,'Info')}
-        {ezini( $ident, 'name', 'store.ini' )}</td>
+    <td>
+        {ezini( concat($order.account_information.payment,'Info'), 'name', 'store.ini' )}
+    </td>
 </tr>
 <tr>
     <td>Комментарий</td>

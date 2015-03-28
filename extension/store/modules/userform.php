@@ -49,10 +49,6 @@ if ( $http->hasPostVariable( "CheckoutButton" ) or ( $doCheckout === true ) ){
 
     if (trim($firstName) == "")
         $inputIsValid = false;
-    if (trim($street1) == "")
-        $inputIsValid = false;
-    if (trim($place) == "")
-        $inputIsValid = false;
     if (trim($phone) == "")
         $inputIsValid = false;
 
