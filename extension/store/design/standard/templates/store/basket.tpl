@@ -14,8 +14,8 @@
 
     {def $itemObject    = array()
         $shippingType   = ezini( 'Shipping', 'type', 'store.ini' )
-        $ship           = cond(is_set(ezhttp( "shipping", "cookie" )), ezhttp( "shipping", "cookie" ), ezini( 'Shipping', 'default', 'store.ini' ))
-        $paydef         = cond($payment, $payment, ezini( 'Payment', 'default', 'store.ini' ))
+        $ship           = cond( is_set(ezhttp( "shipping", "cookie" )), ezhttp( "shipping", "cookie" ), ezini( 'Shipping', 'default', 'store.ini' ) )
+        $paydef         = cond( $payment, $payment, ezini( 'Payment', 'default', 'store.ini' ) )
         $paymentType    = ezini( 'Payment', 'type', 'store.ini' )
     }
 
@@ -29,7 +29,6 @@
             </ul>
         </div>
     {/section}
-
     {if not( $vat_is_known )}
         <div class="message-warning">
             <h2>{'VAT is unknown'|i18n( 'design/ezwebin/shop/basket' )}</h2>
@@ -37,7 +36,6 @@
             {'This probably means that some information about you is not yet available and will be obtained during checkout.'|i18n( 'design/ezwebin/shop/basket' )}
         </div>
     {/if}
-
     {section show=$error}
         <div class="error">
             {section show=$error|eq(1)}
@@ -45,7 +43,6 @@
             {/section}
         </div>
     {/section}
-
     {section show=$error}
         <div class="error">
             {section show=eq($error, "aborted")}
@@ -139,18 +136,23 @@
                     {foreach $paymentType as $key => $type}
                         {set $ident = concat($type,'Info')
                              $desc = ezini($ident, 'description', 'store.ini' )}
-                        {if $access[$ship]|contains($key)}
-                            <div class="radio">
-                                <label for="{$type}">
-                                    <input type="radio" {if $active|not}{set $paydef = $type} checked="checked" {/if} name="_payment" id="{$type}" value="{$type}" >
-                                    <div class="name">{ezini( $ident, 'name', 'store.ini' )}</div>
-                                    {if $desc}
-                                        <div class="icon-cHelp icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="{$desc}"></div>
-                                    {/if}
-                                </label>
-                            </div>
-                            {set $active = $active|inc}
-                        {/if}
+                        <div class="radio">
+                            <label for="{$type}">
+                                <input type="radio" name="_payment" id="{$type}" value="{$type}"
+                                       {if $access[$ship]|contains($key)|not}
+                                           disabled="disabled"
+                                       {else}
+                                           {if $active|not} checked="checked"
+                                               {set $paydef = $type
+                                                    $active = $active|inc}
+                                           {/if}
+                                       {/if} >
+                                <div class="name">{ezini( $ident, 'name', 'store.ini' )}</div>
+                                {if $desc}
+                                    <div class="icon-cHelp icon" data-toggle="tooltip" data-placement="right" title="" data-original-title="{$desc}"></div>
+                                {/if}
+                            </label>
+                        </div>
                     {/foreach}
                     {undef $ident $desc $access $active}
                 </div>
