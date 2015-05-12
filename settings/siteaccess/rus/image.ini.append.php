@@ -14,6 +14,11 @@ AliasList[]=kit
 AliasList[]=typematerial
 AliasList[]=material
 AliasList[]=inctCenterMainPage
+AliasList[]=imagelarge
+
+[imagelarge]
+Reference=
+Filters[]=geometry/scaledownonly=900;900
 
 [inctCenterMainPage]
 Reference=

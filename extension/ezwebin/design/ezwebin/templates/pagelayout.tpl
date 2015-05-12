@@ -56,6 +56,7 @@
         {else}
             {def $subnodes = fetch( 'content', 'list', hash(
                     'parent_node_id', $pagedata.path_array[1].node_id,
+                    'sort_by', array("priority", true()),
                     'class_filter_type', 'include',
                     'class_filter_array', array("folder", "contacts", "instcenter")
                 ) )}
