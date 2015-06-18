@@ -471,6 +471,7 @@ header .navbar .navbar-header .basket .icon-basket {
 .content .materials li .block {
   border: solid 1px #e0e0e0;
   padding: 20px;
+  width: 100%;
 }
 .content .materials li .block:hover {
   border: solid 1px #000000;

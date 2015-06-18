@@ -9,7 +9,7 @@
 {attribute_view_gui attribute=$node.object.data_map.description}
 
 {def $children = fetch_alias( 'children', hash( 'parent_node_id', $node.node_id,
-                                                'sort_by', $node.sort_array,
+                                                'sort_by', array("priority", true()),
                                                 'class_filter_type', 'include',
                                                 'class_filter_array', array('partmaterials') ) ) }
 {foreach $children as $child}

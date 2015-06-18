@@ -17,16 +17,17 @@ $(document).ready(function(){
         function change(){
             var first   = $('input[name="first"]:checked').val();
             var second  = $('input[name="second"]:checked').val();
-            ezOptionValue = kitOptions[first][second][0];
-            var summPrice = price + kitOptions[first][second][1];
-
-            if(summPrice > 0) {
-                priceObjectParent.show();
-                basketButton.removeAttr("disabled");
-                priceObject.html(accounting.formatMoney(price + kitOptions[first][second][1], "", 0, " ", ""));
-            }else{
-                priceObjectParent.hide();
-                basketButton.attr("disabled", "disabled");
+            if(first !== undefined && second !== undefined) {
+                ezOptionValue = kitOptions[first][second][0];
+                var summPrice = price + kitOptions[first][second][1];
+                if (summPrice > 0) {
+                    priceObjectParent.show();
+                    basketButton.removeAttr("disabled");
+                    priceObject.html(accounting.formatMoney(price + kitOptions[first][second][1], "", 0, " ", ""));
+                } else {
+                    priceObjectParent.hide();
+                    basketButton.attr("disabled", "disabled");
+                }
             }
         }
     }
