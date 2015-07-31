@@ -8,7 +8,8 @@
 {def $top_menu_items = fetch( 'content', 'list', hash(
         'parent_node_id', $node.parent.node_id,
         'class_filter_type', 'include',
-        'class_filter_array', array("product")
+        'class_filter_array', array("product"),
+        'sort_by', array("priority", true())
     ))
     $top_menu_items_count = $top_menu_items|count()
     $item_class = array()
@@ -64,10 +65,10 @@
 </script>
 
 <div class="row kitItem">
-    <div class="col-md-6">
+    <div class="col-md-4">
         {attribute_view_gui css_class="img-responsive kitItemImg" image_class=kit attribute=$node.data_map.image}
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="row">
             <div class="col-md-6">
                 <div class="title">Что будем клеить?</div>
