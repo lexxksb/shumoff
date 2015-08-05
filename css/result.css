@@ -209,24 +209,24 @@ header .navbar .navbar-header .basket .icon-basket {
   position: absolute;
 }
 .facade .car .relative .roof {
-  top: -5px;
-  left: 0;
+  top: -15px;
+  left: 55px;
 }
 .facade .car .relative .doors {
-  bottom: 0px;
+  bottom: 15px;
   left: 10px;
 }
 .facade .car .relative .engine {
   right: 125px;
-  top: -5px;
+  top: -15px;
 }
 .facade .car .relative .hood {
   right: 65px;
-  top: 95px;
+  top: 65px;
 }
 .facade .car .relative .floor {
   right: 140px;
-  bottom: -5px;
+  bottom: 5px;
 }
 .facade .car .relative a {
   color: #265697;
