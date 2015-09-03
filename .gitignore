@@ -25,3 +25,4 @@ db/*
 settings/override/site.ini.append.php
 node_modules/
 *.*~
+sitemap.xml
