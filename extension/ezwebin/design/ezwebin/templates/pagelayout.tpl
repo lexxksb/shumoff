@@ -22,6 +22,8 @@
 
     {include uri='design:page_head.tpl'}
 
+    <meta name='yandex-verification' content='4e4679f53e1f99ac' />
+
     <link rel="stylesheet" media="all" href="/css/production.min.css">
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -32,6 +34,17 @@
 <!--[if lt IE 8]>
 <div class="browsehappy">Вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/">обновите Ваш браузер</a></div>
 <![endif]-->
+{literal}
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TJ9GPG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TJ9GPG');</script>
+<!-- End Google Tag Manager -->
+{/literal}
 <div class="wrapper">
 
     <header>

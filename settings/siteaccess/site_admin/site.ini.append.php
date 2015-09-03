@@ -19,6 +19,7 @@ AdditionalSiteDesignList[]=admin
 Locale=rus-RU
 ContentObjectLocale=rus-RU
 ShowUntranslatedObjects=enabled
+SiteLanguageList[]
 SiteLanguageList[]=rus-RU
 TextTranslation=enabled
 
@@ -29,4 +30,15 @@ VarDir=var/ezwebin_site_clean
 CachedViewPreferences[full]=admin_navigation_content=1;admin_children_viewmode=list;admin_list_limit=1
 TranslationList=
 
+[DebugSettings]
+DebugOutput=enabled
+DebugRedirection=disabled
+
+[TemplateSettings]
+Debug=disabled
+ShowXHTMLCode=enabled
+ShowUsedTemplates=enabled
+
+[DatabaseSettings]
+SQLOutput=disabled
 */ ?>
