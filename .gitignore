@@ -26,3 +26,5 @@ settings/override/site.ini.append.php
 node_modules/
 *.*~
 sitemap.xml
+robots.txt
+yandex_*.html
