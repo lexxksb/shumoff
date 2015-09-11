@@ -39,6 +39,7 @@
         {if $newsNodes|count()}
         <div class="news">
             <div class="text"><a href={$newsNodes[0].url_alias|ezurl}>{$newsNodes[0].data_map.name.content|wash}</a></div>
+            {attribute_view_gui attribute=$newsNodes[0].data_map.short_description}
             <div class="all"><a href={$newsNodes[0].parent.url_alias|ezurl}>Все новости и акции</a></div>
         </div>
         {/if}

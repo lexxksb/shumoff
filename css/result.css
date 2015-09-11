@@ -500,7 +500,7 @@ header .navbar .navbar-header .basket .icon-basket {
   margin-left: 0;
 }
 .content .itemMaterials li:nth-child(4n) .block {
-  margin-right: 0px;
+  margin-right: 0;
 }
 .content .itemMaterials li .block {
   border: solid 1px #e0e0e0;
@@ -518,6 +518,7 @@ header .navbar .navbar-header .basket .icon-basket {
 .content .itemMaterials li .block .title {
   font-size: 28px;
   margin: 10px 0px 0 0;
+  min-height: 80px;
 }
 .content .itemMaterials li .block .price,
 .content .itemMaterials li .block .count {
