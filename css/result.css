@@ -1123,6 +1123,13 @@ footer .subscribe input {
 footer .subscribe button {
   border: solid 1px #000000;
 }
+footer .social {
+  margin-top: 15px;
+}
+footer .social a {
+  float: left;
+  margin-right: 10px;
+}
 .btn-shumoff {
   color: #ffffff;
   font-family: "Roboto Bold";

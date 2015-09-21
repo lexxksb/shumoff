@@ -116,6 +116,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <input type="email" name="" value="" placeholder="Ваш Email">
                 <div><button class="btn btn-shumoff" type="submit">Подписаться</button></div>
             </form>
+            <div class="social">
+                <a target="_blank" href="https://vk.com/shumoff_ekb"><div class="icon-vk"></div></a>
+                <a target="_blank" href="https://www.facebook.com/%D0%A8%D1%83%D0%BC%D0%BE%D1%84%D1%84-%D1%86%D0%B5%D0%BD%D1%82%D1%80-%D0%B0%D0%BA%D1%83%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D1%82%D1%8E%D0%BD%D0%B8%D0%BD%D0%B3%D0%B0-680450362068524/timeline/
+"><div class="icon-fb"></div></a>
+            </div>
+
         </div>
     </footer>
 
