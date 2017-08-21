@@ -18,7 +18,7 @@ description=
 description=Счет выставляется после покупки
 
 [transportCompanyInfo]
-description=Мы сотрудничаем с ТК Грузовозов, ТК Кит, ТК Пегас
+description=Мы сотрудничаем с ТК Кит, ТК Пегас, ТК ПЭК, ТК Деловые линии
 
 [cashcardInfo]
 description=Наш терминал находится в офисе
