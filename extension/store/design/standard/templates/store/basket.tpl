@@ -185,6 +185,13 @@
                         <label>Email:</label>
                         <input type="email" name="EMail" class="form-control" placeholder="Email" value="{$email|wash}">
                     </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="Compliance" value="Compliance" checked="checked"> * Согласен <a href={'/about/Politika-v-otnoshenii-OPD'|ezurl}>на обработку персональных данных</a>
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">

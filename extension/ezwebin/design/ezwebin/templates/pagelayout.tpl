@@ -115,6 +115,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <a target="_blank" href="https://vk.com/shumoff_ekb"><div class="icon-vk"></div></a>
                 <a target="_blank" href="https://www.facebook.com/%D0%A8%D1%83%D0%BC%D0%BE%D1%84%D1%84-%D1%86%D0%B5%D0%BD%D1%82%D1%80-%D0%B0%D0%BA%D1%83%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B3%D0%BE-%D1%82%D1%8E%D0%BD%D0%B8%D0%BD%D0%B3%D0%B0-680450362068524/timeline/
 "><div class="icon-fb"></div></a>
+                <a target="_blank" title="instagram" href="https://www.instagram.com/shumoff_team/"><img src="/img/Insta.jpg" width="38" height="38" alt="instagram"></a>
+                <a target="_blank" title="drive2" href="https://www.drive2.ru/o/ShumoffTeam/dashboard/"><img src="/img/D2.jpg" width="38" height="38" alt="drive2"></a>
             </div>
 
         </div>
